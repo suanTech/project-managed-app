@@ -1,6 +1,9 @@
+import Button from "@/components/Button";
 
 export default function Home() {
   return (
-    <div>page</div>
+    <div>
+      <Button className="primary small">Hello</Button>
+    </div>
   )
 }
