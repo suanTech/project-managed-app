@@ -1,0 +1,46 @@
+button {
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 1.3rem;
+  border: none;
+  &:hover,
+  &:active {
+    transform: scale(1.1);
+  }
+  transition: all .2s ease-in-out;
+}
+.primary {
+  background: violet;
+  color: white;
+  border: transparent;
+  &:hover {
+    background: rgb(201, 99, 201);
+  }
+};
+.secondary {
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  &:hover {
+    background: rgb(242, 242, 242);
+  }
+};
+.text {
+  background: transparent;
+  color: black;
+  &:hover {
+    background: rgb(203, 202, 202);
+  }
+}
+.small {
+  padding: .5rem 1rem;
+  font-size: 1rem;
+}
+.medium {
+  padding: .8rem 1.5rem;
+  font-size: 1.2rem;
+}
+.large {
+  padding: 1.3rem 2.2rem;
+  font-size: 1.8rem;
+}
