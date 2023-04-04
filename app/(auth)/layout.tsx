@@ -1,6 +1,6 @@
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import { Inter } from "next/font/google";
-import GlassPane from "@/components/GlassPane";
+import GlassPane from "@/components/UI/GlassPane";
 import styles from "./layout.module.scss";
 
 const inter = Inter({
@@ -14,7 +14,7 @@ export default function AuthRootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className={`${styles.body} rainbow-mesh`}>
+      <body className={`${styles.body} candy-mesh`}>
         <GlassPane className={styles.container}>
           {children}
         </GlassPane>

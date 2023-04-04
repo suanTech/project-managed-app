@@ -1,6 +1,6 @@
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import { Inter } from "next/font/google";
-import GlassPane from "@/components/GlassPane";
+import GlassPane from "@/components/UI/GlassPane";
 import styles from "./layout.module.scss";
 
 export const metadata = {
@@ -19,7 +19,7 @@ export default function DashboardRootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className={`${styles.body} candy-mesh`}>
+      <body className={`${styles.body} rainbow-mesh`}>
         <GlassPane className={styles.container}>
           {/* <SideBar/> */}
           <main className={styles.main}>

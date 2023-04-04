@@ -1,9 +1,13 @@
-import Button from "@/components/Button";
+'use client'
+
+import Sidebar from "@/components/Sidebar";
+import Button from "@/components/UI/Button";
 
 export default function Home() {
   return (
     <div>
-      <Button className="primary small">Hello</Button>
+      <Sidebar></Sidebar>
+      <Button className="secondary small">Hello</Button>
     </div>
   )
 }
