@@ -1,15 +1,42 @@
+type FetcherOptions = {
+  url: string;
+  method: string;
+  body?: object;
+  json?: boolean;
+};
+const fetcher = async ({ url, method, body, json = true }: FetcherOptions) => {
+  const res = await fetch(url, {
+    method,
+    body: body && JSON.stringify(body),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 
+  if (!res.ok) {
+    throw new Error("API Error");
+  }
 
-// export async function fetcher({req}: {req: RequestInfo}, url: string): Promise<T> {
-//   const res = await fetch(url, {
-//     req.method,
-//     body: body && JSON.stringify(body),
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json"
-//     }
-//   })
-//   if(!res.ok) {
-//     throw 
-//   }
-// }
+  if (json) {
+    const data = await res.json();
+    return data;
+  }
+};
+
+export const register = async (user: object) => {
+  return fetcher({
+    url: "/api/register",
+    method: "POST",
+    body: user,
+    json: false
+  })
+}
+export const signin = async (user: object) => {
+  return fetcher({
+    url: "/api/signin",
+    method: "POST",
+    body: user,
+    json: false
+  })
+}

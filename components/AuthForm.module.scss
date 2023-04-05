@@ -1,0 +1,50 @@
+.formWrapper {
+  width: 100%;
+  & > div {
+    text-align: center;
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.1em;
+      color: black;
+    }
+  }
+}
+
+.form {
+  padding: 1.2rem 0;
+  width: 100%;
+  .fieldWrapper {
+    margin-bottom: 1.5rem;
+    justify-content: space-between;
+    & > .nameWrapper {
+      width: 48%;
+    }
+  }
+  .inputLabel {
+    font-size: 1rem;
+    margin: 0 0 0.8rem 0.5rem;
+  }
+  .input {
+    border: 2px solid rgb(47, 47, 47);
+    border-radius: 1.2rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      outline-color: #8d3085;
+    }
+  }
+  .linkWrapper {
+    justify-content: space-between;
+    padding: .8rem 0;
+    span {
+      font-weight: bold;
+      font-size: .9rem;
+    }
+  }
+}

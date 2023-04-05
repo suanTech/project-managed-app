@@ -1,6 +1,10 @@
 import './Card.scss';
 
-export default function Card({children, className}: {children: React.ReactNode, className: string}) {
+type CardType = {
+  children: React.ReactNode,
+  className?: string
+}
+export default function Card({children, className}: CardType): JSX.Element {
   return (
     <div className={`card ${className}`}>
       {children}

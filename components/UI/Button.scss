@@ -5,7 +5,7 @@ button {
   border: none;
   &:hover,
   &:active {
-    transform: scale(1.1);
+    transform: scale(1.07);
   }
   transition: all .2s ease-in-out;
 }
@@ -18,9 +18,9 @@ button {
   }
 };
 .secondary {
-  background: white;
+  background: transparent;
   color: black;
-  border: 1px solid #ccc;
+  border: 2px solid #414141;
   &:hover {
     background: rgb(242, 242, 242);
   }

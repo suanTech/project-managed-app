@@ -1,3 +1,4 @@
+import AuthForm from "@/components/AuthForm";
 
 export const metadata = {
   title: "Register",
@@ -6,6 +7,6 @@ export const metadata = {
 
 export default function Register() {
   return (
-    <div>Hello world</div>
+    <AuthForm mode='register'></AuthForm>
   )
 }
