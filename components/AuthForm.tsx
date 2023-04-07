@@ -19,8 +19,8 @@ const registerContent = {
 const signinContent = {
   linkUrl: "/register",
   linkText: "Don't have an account?",
-  header: "Welcome Back",
-  subheader: "Enter your credentials to access your account",
+  header: "Welcome Back 😎",
+  subheader: "Sign In to access your account",
   buttonText: "Sign In",
 };
 const initialState = { email: "", password: "", firstName: "", lastName: "" };
@@ -60,7 +60,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           <h2>{content.header}</h2>
           <p>{content.subheader}</p>
         </div>
-        <form className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           {mode === "register" && (
             <div className={`${styles.fieldWrapper} flexy`}>
               <div className={styles.nameWrapper}>
@@ -69,7 +69,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                   required
                   placeholder="First Name"
                   value={formState.firstName}
-                  className={styles.input}
+                  className='formInput'
                   onChange={(e) =>
                     setFormState((prev) => ({
                       ...prev,
@@ -82,9 +82,9 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                 <div className={styles.inputLabel}>Last Name</div>
                 <Input
                   required
-                  placeholder="First Name"
-                  value={formState.firstName}
-                  className={styles.input}
+                  placeholder="Last Name"
+                  value={formState.lastName}
+                  className='formInput'
                   onChange={(e) =>
                     setFormState((prev) => ({
                       ...prev,
@@ -102,20 +102,20 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               type="email"
               placeholder="email"
               value={formState.email}
-              className={styles.input}
+              className='formInput'
               onChange={(e) =>
                 setFormState((prev) => ({ ...prev, email: e.target.value }))
               }
             />
           </div>
-          <div className={styles.nameWrapper}>
+          <div className={styles.fieldWrapper}>
             <div className={styles.inputLabel}>Password</div>
             <Input
               required
               type="password"
               placeholder="password"
               value={formState.password}
-              className={styles.input}
+              className='formInput'
               onChange={(e) =>
                 setFormState((prev) => ({ ...prev, password: e.target.value }))
               }

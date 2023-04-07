@@ -1,5 +1,6 @@
 .formWrapper {
   width: 100%;
+  min-width: 300px;
   & > div {
     text-align: center;
     h2 {
@@ -12,7 +13,6 @@
     }
   }
 }
-
 .form {
   padding: 1.2rem 0;
   width: 100%;
@@ -24,20 +24,8 @@
     }
   }
   .inputLabel {
-    font-size: 1rem;
-    margin: 0 0 0.8rem 0.5rem;
-  }
-  .input {
-    border: 2px solid rgb(47, 47, 47);
-    border-radius: 1.2rem;
-    padding: 0.5rem 1rem;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
-    &:hover,
-    &:focus {
-      background-color: transparent;
-      outline-color: #8d3085;
-    }
+    font-size: .8rem;
+    margin: 0 0 0.6rem 0.4rem;
   }
   .linkWrapper {
     justify-content: space-between;
