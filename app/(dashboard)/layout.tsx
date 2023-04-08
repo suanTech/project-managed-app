@@ -2,6 +2,7 @@ import "@/styles/globals.scss";
 import { Inter } from "next/font/google";
 import GlassPane from "@/components/UI/GlassPane";
 import styles from "./layout.module.scss";
+import Sidebar from "@/components/Sidebar";
 
 export const metadata = {
   title: "Home",
@@ -21,7 +22,7 @@ export default function DashboardRootLayout({
     <html lang="en" className={inter.className}>
       <body className={`${styles.body} rainbow-mesh`}>
         <GlassPane className={styles.container}>
-          {/* <SideBar/> */}
+          <Sidebar/>
           <main className={styles.main}>
             {children}
           </main>

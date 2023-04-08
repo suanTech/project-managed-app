@@ -1,6 +1,8 @@
 import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
+const PUBLIC_FILE = /\.(.*)$/;
+
 const validateJWT = async (jwt: string) => {
   const { payload } = await jwtVerify(
     jwt,
@@ -8,8 +10,6 @@ const validateJWT = async (jwt: string) => {
   );
   return payload;
 }
-
-const PUBLIC_FILE = /\.(.*)$/;
 export default async function middleware(
   req: NextRequest,
   res: NextResponse
@@ -26,10 +26,11 @@ export default async function middleware(
       return NextResponse.next();
     }
     const jwt = req.cookies.get(process.env.COOKIE_NAME);
+    console.log(jwt);
     if(!jwt) {
       req.nextUrl.pathname = "/signin";
       return NextResponse.redirect(req.nextUrl)
-    }
+    } 
     try {
       await validateJWT(jwt.value);
       return NextResponse.next();

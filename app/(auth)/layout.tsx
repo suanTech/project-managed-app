@@ -15,9 +15,9 @@ export default function AuthRootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body className={`${styles.body} candy-mesh`}>
-        <div className={styles.container}>
+        <main className={styles.container}>
           {children}
-        </div>
+        </main>
       </body>
     </html>
   );
