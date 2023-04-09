@@ -57,14 +57,14 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
     <Card>
       <div className={styles.formWrapper}>
         <div>
-          <h2>{content.header}</h2>
-          <p>{content.subheader}</p>
+          <h1>{content.header}</h1>
+          <p className="small">{content.subheader}</p>
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           {mode === "register" && (
-            <div className={`${styles.fieldWrapper} flexy`}>
+            <div className={styles.nameField}>
               <div className={styles.nameWrapper}>
-                <div className={styles.inputLabel}>First Name</div>
+                <p className={`${styles.inputLabel} small`}>First Name</p>
                 <Input
                   required
                   placeholder="First Name"
@@ -79,7 +79,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                 />
               </div>
               <div className={styles.nameWrapper}>
-                <div className={styles.inputLabel}>Last Name</div>
+                <p className={`${styles.inputLabel} small`}>Last Name</p>
                 <Input
                   required
                   placeholder="Last Name"
@@ -96,7 +96,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             </div>
           )}
           <div className={styles.fieldWrapper}>
-            <div className={styles.inputLabel}>Email</div>
+            <p className={`${styles.inputLabel} small`}>Email</p>
             <Input
               required
               type="email"
@@ -109,7 +109,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             />
           </div>
           <div className={styles.fieldWrapper}>
-            <div className={styles.inputLabel}>Password</div>
+            <p className={`${styles.inputLabel} small`}>Password</p>
             <Input
               required
               type="password"
@@ -121,11 +121,11 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               }
             />
           </div>
-          <div className={`flexy ${styles.linkWrapper}`}>
+          <div className={styles.linkWrapper}>
             <div>
-              <span>
+              <p className="bold small">
                 <Link href={content.linkUrl}>{content.linkText}</Link>
-              </span>
+              </p>
             </div>
             <div>
               <Button type="submit" className="secondary small">

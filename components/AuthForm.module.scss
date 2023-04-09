@@ -1,38 +1,38 @@
+@import '../styles/mixins';
+
 .formWrapper {
   width: 100%;
   min-width: 300px;
+  padding: 1rem;
   & > div {
     text-align: center;
-    h2 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1.1em;
-      color: black;
-    }
   }
 }
 .form {
-  padding: 1.2rem 0;
+  padding: 1rem 0;
+  margin-top: 1.5rem;
   width: 100%;
-  .fieldWrapper {
+  .nameField {
+    @include flexy($just: space-between);
     margin-bottom: 1.5rem;
-    justify-content: space-between;
     & > .nameWrapper {
       width: 48%;
     }
   }
+  .fieldWrapper {
+    margin-bottom: 1.5rem;
+  }
   .inputLabel {
-    font-size: .8rem;
-    margin: 0 0 0.6rem 0.4rem;
+    margin: 0 0 0.4rem 0.4rem;
   }
   .linkWrapper {
-    justify-content: space-between;
-    padding: .8rem 0;
-    span {
-      font-weight: bold;
-      font-size: .9rem;
+    @include flexy($just: space-between, $algn: center);
+    padding-top: .75rem;
+    p {
+      color: blue;
+    }
+    button {
+      margin: 0;
     }
   }
 }

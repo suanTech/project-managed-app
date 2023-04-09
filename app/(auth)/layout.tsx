@@ -1,9 +1,7 @@
 import "@/styles/globals.scss";
-import { Inter } from "next/font/google";
-import GlassPane from "@/components/UI/GlassPane";
-import styles from "./layout.module.scss";
+import { Overpass } from "next/font/google";
 
-const inter = Inter({
+const overpass = Overpass({
   subsets: ["latin"],
 });
 
@@ -13,9 +11,9 @@ export default function AuthRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className={`${styles.body} candy-mesh`}>
-        <main className={styles.container}>
+    <html lang="en" className={`${overpass.className} candy-mesh`}>
+      <body>
+        <main className='container'>
           {children}
         </main>
       </body>

@@ -1,7 +1,6 @@
 import "@/styles/globals.scss";
-import { Inter } from "next/font/google";
+import { Overpass} from "next/font/google";
 import GlassPane from "@/components/UI/GlassPane";
-import styles from "./layout.module.scss";
 import Sidebar from "@/components/Sidebar";
 
 export const metadata = {
@@ -9,7 +8,7 @@ export const metadata = {
   description: "Homepage",
 };
 
-const inter = Inter({
+const overpass = Overpass({
   subsets: ["latin"],
 });
 
@@ -19,11 +18,11 @@ export default function DashboardRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className={`${styles.body} rainbow-mesh`}>
-        <GlassPane className={styles.container}>
+    <html lang="en" className={`${overpass.className} rainbow-mesh`}>
+      <body>
+        <GlassPane className='container'>
           <Sidebar/>
-          <main className={styles.main}>
+          <main className='dashboard'>
             {children}
           </main>
         </GlassPane>

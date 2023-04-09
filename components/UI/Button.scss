@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 @keyframes bounce {
   50% {
     transform: translateY(-2px);
@@ -9,27 +11,37 @@
 
 button {
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 400;
   border-radius: 1rem;
   border: none;
+  margin-top: 1.2rem;
   transition: all .2s ease-in-out;
   &:hover,
   &:active {
     animation: bounce .6s;
     box-shadow: 1px 1px 10px rgb(203, 202, 202);
   }
+  &.small {
+    padding: .5rem 1rem;
+  }
+  &.medium {
+    padding: .75rem 1.2rem;
+  }
+  &.large {
+    padding: .8rem 1.5rem;
+  }
 }
 .primary {
-  background: lighten(rgb(117, 79, 233), 3%);
+  background: lighten($clr-accent, 3%);
   box-shadow: 0px 2px 0 darken(rgb(223, 230, 213), 4%), 2px 4px 6px darken(rgb(223, 230, 213), 2%);
-  border: 1px solid darken(rgb(117, 79, 233), 1.4%);
+  border: 1px solid darken($clr-accent, 1.4%);
   color: white;
   &:hover {
-    background: darken(rgb(117, 79, 233), 2.5%);
+    background: darken($clr-accent, 2.5%);
     border: 1px solid rgba(#000, .05);
-    color: lighten(rgb(117, 79, 233), 23%); 
+    color: lighten($clr-accent, 23%); 
     text-decoration: none;
-    text-shadow: -1px -1px 0 darken(rgb(117, 79, 233), 9.5%);
+    text-shadow: -1px -1px 0 darken($clr-accent, 9.5%);
     transition: all 250ms linear;
   }
 };
@@ -47,16 +59,4 @@ button {
   &:hover {
     background: rgb(203, 202, 202);
   }
-}
-.small {
-  padding: .5rem 1rem;
-  font-size: 1rem;
-}
-.medium {
-  padding: .5rem 1.2rem;
-  font-size: 1rem;
-}
-.large {
-  padding: .8rem 1.5rem;
-  font-size: 1.4rem;
 }

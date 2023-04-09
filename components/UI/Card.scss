@@ -1,15 +1,34 @@
+@import '../../styles/mixins';
+
 .card {
   border-radius: 1.3rem;
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem;
   background-color: rgba(255, 255, 255, .55);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   &.sidebar {
     height: 100%;
+    min-height: 300px;
     width: 9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    @include flexy($dir: column, $algn: center, $just: space-between, $wrap: wrap);
+  }
+  &.greetings {
+    @include flexy($just: space-between);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .bannerImage {
+      position: absolute;
+      top: -7x;
+      right: -23px;
+      height: 100%;
+      width: 50%;
+      background-image: url('../../assets/Saly-10.png');
+      background-repeat: no-repeat;
+      background-size: 300px, auto;
+      background-position: right;
+    }
+  }
+  &.project {
+    height: 100%;
   }
 }

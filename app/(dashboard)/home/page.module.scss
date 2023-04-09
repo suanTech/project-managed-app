@@ -1,14 +1,13 @@
+@import '../../../styles/mixins';
+
 .container {
   height: 100%;
   width: 100%;
   overflow-y: auto;
   padding: 0 1em;
   .innerContainer {
-    display: flex;
-    flex-direction: column;
+    @include flexy($dir: column, $algn: stretch);
     height: 100%;
-    align-items: stretch;
-    justify-content: center;
     min-height: fit-content;
   }
   .greetings {
@@ -16,15 +15,17 @@
     flex-direction: column;
     flex-grow: 1;
   }
-  .project {
-    display: flex;
-    flex-grow: 2;
-    align-items: center;
-    flex-wrap: wrap;
+  .projectWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1.5rem;
+    justify-content: space-between;
     margin-top: 1.5rem;
-    div {
-      width: 33.3333%;
-      padding: 1rem;
+    min-height: calc(100vh - 340px);
+    & > .project {
+      height: 32vh;
+      min-height: 130px;
+      max-height: 180px;
     }
   }
   .task {
@@ -33,3 +34,5 @@
     width: 100%;
   }
 }
+
+

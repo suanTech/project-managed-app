@@ -6,7 +6,7 @@ type CardType = {
 }
 export default function Card({children, className}: CardType): JSX.Element {
   return (
-    <div className={`card ${className}`}>
+    <div className={`card ${className && className}`}>
       {children}
     </div>
   )
