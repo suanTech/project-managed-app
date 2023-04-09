@@ -1,0 +1,31 @@
+
+// colors
+$clr-bg: #f4fbfb;
+$clr-body: #2e2e36;
+$clr-body-light: lighten($clr-body, 30%);
+$clr-accent: #754fe9;
+$clr-warning: #b95223;
+$clr-muted: #a7aaaa;
+
+// font size
+
+$h1-font-sizes: (
+  null : 22px,
+  768px: 25px
+);
+$h2-font-sizes: (
+  null:20px,
+  768px: 22px,
+);
+$h3-font-sizes: (
+  null: 16px,
+  768px: 18px
+);
+$bodyS-font-sizes: (
+  null: 13px,
+  768px: 16px,
+);
+$bodyXS-font-sizes: (
+  null: 11px,
+  768px: 13px,
+);

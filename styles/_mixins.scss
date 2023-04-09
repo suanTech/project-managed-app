@@ -1,0 +1,27 @@
+@mixin font-size($font-sizes-map) {
+  @each $breakpoint, $font-size in $font-sizes-map {
+    @if $breakpoint == null {
+      font-size: $font-size;
+    }
+    @else {
+      @media screen and (min-width: $breakpoint) {
+        font-size: $font-size;
+      }
+    }
+  }
+};
+
+@mixin flexy(
+  $disp: flex,
+  $dir: row,
+  $just: null,
+  $wrap: null,
+  $algn: center,
+  $grow: null) {
+    display: $disp;
+    flex-direction: $dir;
+    justify-content: $just;
+    flex-wrap: $wrap;
+    align-items: $algn;
+    flex-grow: $grow;
+  }
