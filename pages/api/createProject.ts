@@ -13,6 +13,7 @@ export default async function handler(
       const result = await db.project.create({
         data: {
           name: req.body.name,
+          description: req.body.description,
           ownerId: user.id,
         },
       });

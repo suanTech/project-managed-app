@@ -40,10 +40,10 @@ export const signin = async (user: object) => {
     json: false
   })
 }
-export const createProject = (name: string) => {
+export const createProject = (name: string, description: string) => {
   return fetcher({
     url: "/api/createProject",
     method: "POST",
-    body: {name},
+    body: {name, description},
   })
 }

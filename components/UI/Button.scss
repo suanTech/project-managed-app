@@ -1,4 +1,5 @@
-@import '../../styles/variables';
+@import '/styles/variables';
+@import '/styles/mixins';
 
 @keyframes bounce {
   50% {
@@ -12,7 +13,7 @@
 button {
   cursor: pointer;
   font-weight: 400;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   border: none;
   transition: all .2s ease-in-out;
   &:hover,
@@ -22,9 +23,11 @@ button {
   }
   &.small {
     padding: .5rem 1rem;
+    @include font-size($bodyS-font-sizes);
   }
   &.medium {
-    padding: .75rem 1.2rem;
+    padding: .7rem 1.2rem;
+    @include font-size($bodyS-font-sizes);
   }
   &.large {
     padding: .8rem 1.5rem;
@@ -56,6 +59,6 @@ button {
   background: transparent;
   color: black;
   &:hover {
-    background: rgb(203, 202, 202);
+    transform: scale(1.1);
   }
 }

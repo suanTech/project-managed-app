@@ -1,3 +1,4 @@
+import CreateProject from "@/components/CreateProject";
 import Greetings from "@/components/Greetings";
 import ProjectCard from "@/components/ProjectCard";
 import TaskCard from "@/components/TaskCard";
@@ -7,7 +8,6 @@ import { db } from "@/lib/db";
 import { delay } from "@/lib/helper";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import styles from "./page.module.scss";
 
 const getData = async () => {
@@ -40,7 +40,7 @@ export default async function Home() {
         </div>
         <div className={styles.projectWrapper}>
           <div className={styles.newProject}>
-            <Button className="secondary small">+ Add a Project</Button>
+            <CreateProject />
           </div>
           {projects.map((project) => (
             <div className={styles.project} key={project.id}>
