@@ -1,26 +1,32 @@
 import Greetings from "@/components/Greetings";
-import Project from "@/components/Project";
-import GreetingsSkeleton from "@/components/skeletons/GreetingsSkeleton";
+import ProjectCard from "@/components/ProjectCard";
+import TaskCard from "@/components/TaskCard";
+import Button from "@/components/UI/Button";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { delay } from "@/lib/helper";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { Suspense } from "react";
+import { redirect } from "next/navigation";
 import styles from "./page.module.scss";
 
 const getData = async () => {
-  await delay(2000);
-  const user = await getUserFromCookie(cookies());
-  const projects = await db.project.findMany({
-    where: {
-      ownerId: user?.id,
-    },
-    include: {
-      tasks: true,
-    },
-  });
-  return projects;
+  // try {
+    await delay(2000);
+    const user = await getUserFromCookie(cookies());
+    const projects = await db.project.findMany({
+      where: {
+        ownerId: user?.id,
+      },
+      include: {
+        tasks: true,
+      },
+    });
+    return projects;
+  // } catch(err) {
+  //   redirect('/signin')
+  // }
+
 };
 
 export default async function Home() {
@@ -29,23 +35,27 @@ export default async function Home() {
     <div className={styles.container}>
       <div className={styles.innerContainer}>
         <div className={styles.greetings}>
-          <Suspense fallback={<GreetingsSkeleton />}>
-            {/* @ts-expect-error */}
-            <Greetings />
-          </Suspense>
+          {/* @ts-expect-error */}
+          <Greetings />
         </div>
         <div className={styles.projectWrapper}>
+          <div className={styles.newProject}>
+            <Button className="secondary small">+ Add a Project</Button>
+          </div>
           {projects.map((project) => (
-            <div className={styles.project}>
+            <div className={styles.project} key={project.id}>
               <Link href={`/project/${project.id}`}>
-                <Project project={project} />
+                <ProjectCard project={project} />
               </Link>
             </div>
           ))}
-          <div>new project here</div>
         </div>
-        <div>
-          <div className={styles.task}>tasks here</div>
+        <div className={styles.taskWrapper}>
+          <div className={styles.task}>
+            {/* @ts-expect-error */}
+            <TaskCard />
+          </div>
+          <div><br /></div>
         </div>
       </div>
     </div>

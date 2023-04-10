@@ -3,7 +3,7 @@ import Skeleton from "./Skeleton";
 
 export default function GreetingsSkeleton() {
   return (
-    <Card>
+    <Card className="skeleton-card">
       <div>
         <Skeleton classes='title width-100'/>
         <Skeleton classes='text width-100'/>

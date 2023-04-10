@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
-import { comparePasswords, createJWT, hashPassword } from "@/lib/auth";
+import { comparePasswords, createJWT } from "@/lib/auth";
 import {serialize} from "cookie";
 
-export default async function Signin(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

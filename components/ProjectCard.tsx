@@ -1,16 +1,16 @@
 import { formatDate } from "@/lib/helper";
 import { Prisma } from "@prisma/client";
 import Card from "./UI/Card";
-import styles from './Project.module.scss';
+import styles from './ProjectCard.module.scss';
 
 const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
   include: {
     tasks: true,
   },
 });
-type ProjectWithTasks = Prisma.ProjectGetPayload<typeof projectWithTasks>;
+export type ProjectWithTasks = Prisma.ProjectGetPayload<typeof projectWithTasks>;
 
-export default function Project({ project }: { project: ProjectWithTasks }) {
+export default function ProjectCard({ project }: { project: ProjectWithTasks }) {
   const completeCount = project.tasks.filter(
     (task) => task.status === "COMPLETED"
   ).length;
@@ -20,7 +20,7 @@ export default function Project({ project }: { project: ProjectWithTasks }) {
       <div>
         <p className="small muted">{formatDate(project.createdAt)}</p>
       </div>
-      <div>
+      <div className={styles.projectName}>
         <h2>{project.name}</h2>
       </div>
       <div>

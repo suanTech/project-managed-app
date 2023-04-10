@@ -14,12 +14,11 @@ button {
   font-weight: 400;
   border-radius: 1rem;
   border: none;
-  margin-top: 1.2rem;
   transition: all .2s ease-in-out;
   &:hover,
   &:active {
     animation: bounce .6s;
-    box-shadow: 1px 1px 10px rgb(203, 202, 202);
+    box-shadow: 1px 1px 5px rgba(148, 148, 148, .4);
   }
   &.small {
     padding: .5rem 1rem;

@@ -1,0 +1,26 @@
+@import '/styles/mixins';
+@import '/styles/variables';
+.titleWrapper {
+  @include flexy($just: space-between, $algn: center);
+  margin-bottom: 1rem;
+  button {
+    margin: 0;
+  }
+}
+.ul {
+  list-style: none;
+  li {
+    padding: .5rem 0;
+    h3 {
+      font-weight: bold;
+    }
+  }
+}
+.table {
+  width: 100%;
+  text-align: left;
+  thead th {
+    padding-bottom: 1rem;
+    @include font-size($bodyS-font-sizes);
+  }
+}
