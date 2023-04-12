@@ -1,3 +1,5 @@
+import { Task } from "@prisma/client";
+
 type FetcherOptions = {
   url: string;
   method: string;
@@ -40,10 +42,24 @@ export const signin = async (user: object) => {
     json: false
   })
 }
-export const createProject = (name: string, description: string) => {
+export const createProject = (name:string, description:string) => {
   return fetcher({
     url: "/api/createProject",
     method: "POST",
     body: {name, description},
+  })
+}
+export const createTask = (id:string, task: {name: string, description:string, due: string}) => {
+  return fetcher({
+    url: "/api/createTask",
+    method: "POST",
+    body: {id, task}
+  })
+}
+export const updateStatus = (status: string) => {
+  return fetcher({
+    url: "api/updateStatus",
+    method: "PUT",
+    body: {status}
   })
 }
