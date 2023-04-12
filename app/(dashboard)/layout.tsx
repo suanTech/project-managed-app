@@ -2,8 +2,6 @@ import "@/styles/globals.scss";
 import { Overpass} from "next/font/google";
 import GlassPane from "@/components/UI/GlassPane";
 import Sidebar from "@/components/Sidebar";
-import { Suspense } from "react";
-import GreetingsSkeleton from "@/components/skeletons/GreetingsSkeleton";
 
 export const metadata = {
   title: "Home",
@@ -25,9 +23,7 @@ export default function DashboardRootLayout({
         <GlassPane className='container'>
           <Sidebar/>
           <main className='dashboard'>
-            <Suspense fallback={<GreetingsSkeleton/>}>
             {children}
-            </Suspense>
           </main>
         </GlassPane>
       </body>

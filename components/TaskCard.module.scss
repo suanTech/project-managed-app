@@ -1,16 +1,18 @@
-@import '/styles/mixins';
-@import '/styles/variables';
+@import "/styles/mixins";
+@import "/styles/variables";
 .titleWrapper {
   @include flexy($just: space-between, $algn: center);
-  margin-bottom: 1rem;
   button {
     margin: 0;
   }
 }
+.projectDescription {
+  padding: 1rem 0;
+}
 .ul {
   list-style: none;
   li {
-    padding: .5rem 0;
+    padding: 0.5rem 0;
     h3 {
       font-weight: bold;
     }
@@ -19,6 +21,7 @@
 .table {
   width: 100%;
   text-align: left;
+  margin-top: 0.5rem;
   thead th {
     padding-bottom: 1rem;
     @include font-size($bodyS-font-sizes);

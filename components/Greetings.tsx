@@ -20,7 +20,7 @@ const Greetings = async () => {
           <p>Check your daily tasks and schedule</p>
         </div>
         <div style={{marginTop: '1rem'}}>
-          <Button className="primary small">
+          <Button className="primary medium">
             <p className="small">Today's Schedule</p>
           </Button>
         </div>

@@ -35,10 +35,11 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
       try {
         if (mode === "register") {
           await register(formState);
+          router.replace("/signin");
         } else {
           await signin(formState);
+          router.replace("/home");
         }
-        router.replace("/home");
       } catch (err) {
         setError(`Could not ${mode}`);
       } finally {
@@ -69,7 +70,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                   required
                   placeholder="First Name"
                   value={formState.firstName}
-                  className='formInput'
+                  className="formInput"
                   onChange={(e) =>
                     setFormState((prev) => ({
                       ...prev,
@@ -84,7 +85,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                   required
                   placeholder="Last Name"
                   value={formState.lastName}
-                  className='formInput'
+                  className="formInput"
                   onChange={(e) =>
                     setFormState((prev) => ({
                       ...prev,
@@ -102,7 +103,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               type="email"
               placeholder="email"
               value={formState.email}
-              className='formInput'
+              className="formInput"
               onChange={(e) =>
                 setFormState((prev) => ({ ...prev, email: e.target.value }))
               }
@@ -115,7 +116,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               type="password"
               placeholder="password"
               value={formState.password}
-              className='formInput'
+              className="formInput"
               onChange={(e) =>
                 setFormState((prev) => ({ ...prev, password: e.target.value }))
               }

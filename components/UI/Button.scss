@@ -22,15 +22,15 @@ button {
     box-shadow: 1px 1px 5px rgba(148, 148, 148, .4);
   }
   &.small {
-    padding: .5rem 1rem;
+    padding: .35rem .75rem;
     @include font-size($bodyS-font-sizes);
   }
   &.medium {
-    padding: .7rem 1.2rem;
+    padding: .5rem 1rem;
     @include font-size($bodyS-font-sizes);
   }
   &.large {
-    padding: .8rem 1.5rem;
+    padding: .7rem 1.2rem;
   }
 }
 .primary {
@@ -58,7 +58,4 @@ button {
 .text {
   background: transparent;
   color: black;
-  &:hover {
-    transform: scale(1.1);
-  }
 }

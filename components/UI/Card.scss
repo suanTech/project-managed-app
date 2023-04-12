@@ -1,16 +1,21 @@
-@import '/styles/mixins';
-@import '/styles/variables';
+@import "/styles/mixins";
+@import "/styles/variables";
 
 .card {
   border-radius: 1.3rem;
   padding: 1.5rem;
-  background-color: rgba(255, 255, 255, .55);
+  background-color: rgba(255, 255, 255, 0.55);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   &.sidebar {
     height: 100%;
-    min-height: 300px;
     width: 9rem;
-    @include flexy($dir: column, $algn: center, $just: space-between, $wrap: wrap);
+    min-height: 300px;
+    @include flexy(
+      $dir: column,
+      $algn: center,
+      $just: space-between,
+      $wrap: wrap
+    );
   }
   &.greetings {
     @include flexy($just: space-between);
@@ -27,14 +32,14 @@
     }
     .greetings-banner {
       opacity: 0;
-      transition: opacity .6s ease-out;
+      transition: opacity 0.6s ease-out;
       @media (min-width: 768px) {
         opacity: 1;
         position: absolute;
         right: 0;
         height: 100%;
         width: 60%;
-        background-image: url('../../assets/Saly-10.png');
+        background-image: url("../../assets/Saly-10.png");
         background-repeat: no-repeat;
         background-size: 300px, auto;
         background-position: right;
@@ -46,5 +51,9 @@
   }
   &.modal {
     background-color: $clr-bg;
+  }
+  &.task {
+    max-height: 630px;
+    overflow: auto;
   }
 }

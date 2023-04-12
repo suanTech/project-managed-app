@@ -37,13 +37,12 @@ export default async function TaskCard({
     <Card className="task">
       <div className={styles.titleWrapper}>
         <div>
-          <h2>{title}</h2>
-        </div>
-        <div>
-          <Button className="secondary small">+ Create New</Button>
+          <h2>Due Tasks</h2>
         </div>
       </div>
-      {data && data.length ? (
+      {!data || data.length < 0 ? (
+        <div>No Tasks</div>
+      ) : (
         <table className={styles.table}>
           <thead>
             <tr>
@@ -58,14 +57,10 @@ export default async function TaskCard({
                 <td>{task.name}</td>
                 <td>{task.description}</td>
                 <td>{formatDate(task.due!)}</td>
-                <td>{task.status === 'COMPLETED' ? 'O' : task.status === 'NOT_STARTED' ? '△' : 'X'}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      ) : (
-
-        <div>No Tasks</div>
       )}
     </Card>
   );

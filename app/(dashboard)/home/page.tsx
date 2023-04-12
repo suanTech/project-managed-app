@@ -1,4 +1,5 @@
-import CreateProject from "@/components/CreateProject";
+import CreateNew from "@/components/CreateNew";
+import CreateProject from "@/components/CreateNew";
 import Greetings from "@/components/Greetings";
 import ProjectCard from "@/components/ProjectCard";
 import TaskCard from "@/components/TaskCard";
@@ -23,9 +24,6 @@ const getData = async () => {
       },
     });
     return projects;
-  // } catch(err) {
-  //   redirect('/signin')
-  // }
 
 };
 
@@ -40,7 +38,7 @@ export default async function Home() {
         </div>
         <div className={styles.projectWrapper}>
           <div className={styles.newProject}>
-            <CreateProject />
+            <CreateNew type='project' />
           </div>
           {projects.map((project) => (
             <div className={styles.project} key={project.id}>
