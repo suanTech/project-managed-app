@@ -1,0 +1,62 @@
+@import '/styles/variables';
+@import '/styles/mixins';
+
+.containerDiv {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 2rem;
+  background-color: rgba($clr-body, 0.3);
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  transition: all .2s ease-in-out;
+  &.open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.modalDiv {
+  @include flexy($algn: center, $just: center, $dir:column);
+  gap: 1.5em;
+  width: 50%;
+  min-width: 350px;
+  height: 80%;
+  word-wrap: break-all;
+  position: absolute;
+  opacity: 0;
+  bottom: -100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 3.5em 2.5em;
+  background-color: $clr-bg;
+  border-radius: 1em;
+  transition: opacity .3s ease-in-out, transform .5s ease-in-out;
+  &.open {
+    opacity: 1;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.span {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  button {
+    @include font-size($h3-font-sizes);
+  }
+}
+.form {
+  width: 80%;
+  @include flexy($dir: column, $just: space-between);
+  gap: 1rem;
+  .description {
+    height: 3rem;
+  }
+  button {
+    margin-top: 2rem;
+  }
+}
