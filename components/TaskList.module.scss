@@ -1,12 +1,6 @@
-@import "/styles/mixins";
-@import "/styles/variables";
+@import '/styles/variables';
+@import '/styles/mixins';
 
-.titleWrapper {
-  @include flexy($just: space-between, $algn: center);
-}
-.projectDescription {
-  padding: 1rem 0;
-}
 .table {
   width: 100%;
   text-align: left;
@@ -18,6 +12,7 @@
 }
 .item {
   position: relative;
+  align-items: center;
   z-index: 2;
   &:hover {
     background-color: rgba($clr-bg, 0.87);
@@ -25,7 +20,7 @@
   td {
     cursor: pointer;
     padding: 0.5rem 0;
-    &:first-child {
+    &.taskName {
       position: relative;
       &::before {
         content: "\25BE";
@@ -37,6 +32,7 @@
 }
 
 .taskDescription {
+  text-align: center;
   visibility: hidden;
   position: relative;
   z-index: 0;
@@ -48,14 +44,14 @@
     height: 0px;
   }
   div p {
-    padding-left: 20px;
+    padding: 1.5rem 0;
   }
   &.show {
     visibility: visible;
     &, div:first-child{
       opacity: 1;
       transform: translateY(0px);
-      height: 80px;
+      height: 120px;
     }
   }
 }
@@ -66,5 +62,20 @@
   gap: 2rem;
   button {
     margin: 0;
+  }
+}
+
+.dropdown {
+  border: 1px solid rgb(159, 155, 159);;
+  border-radius: .5rem;
+  width: 90%;
+  font-size: .9rem;
+  transition: background-color .2s ease-in-out;
+  select {
+    border: none;
+    background-color: transparent;
+    width: 97%;
+    height: 100%;
+    padding: .6rem .6rem;
   }
 }

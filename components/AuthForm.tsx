@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { register, signin } from "@/lib/api";
 import Input from "./UI/Input";
-import Button from "./UI/Button";
 import Card from "./UI/Card";
 import { useCallback, useState } from "react";
 import styles from "./AuthForm.module.scss";
@@ -29,30 +28,22 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
   const [formState, setFormState] = useState({ ...initialState });
   const [error, setError] = useState("");
   const router = useRouter();
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      try {
-        if (mode === "register") {
-          await register(formState);
-          router.replace("/signin");
-        } else {
-          await signin(formState);
-          router.replace("/home");
-        }
-      } catch (err) {
-        setError(`Could not ${mode}`);
-      } finally {
-        setFormState({ ...initialState });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (mode === "register") {
+        await register(formState);
+        router.replace("/signin");
+      } else {
+        await signin(formState);
+        router.replace("/home");
       }
-    },
-    [
-      formState.email,
-      formState.password,
-      formState.firstName,
-      formState.lastName,
-    ]
-  );
+    } catch (err) {
+      setError(`Could not ${mode}, please check the detail and try again`);
+    } finally {
+      setFormState({ ...initialState });
+    }
+  };
   const content = mode === "register" ? registerContent : signinContent;
   return (
     <Card>
@@ -60,6 +51,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
         <div>
           <h1>{content.header}</h1>
           <p className="small">{content.subheader}</p>
+          {error.length > 0 && <p className="small warning">{error}</p>}
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           {mode === "register" && (
@@ -129,9 +121,9 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               </p>
             </div>
             <div>
-              <Button type="submit" className="secondary small">
+              <button type="submit" className="secondary small">
                 {content.buttonText}
-              </Button>
+              </button>
             </div>
           </div>
         </form>

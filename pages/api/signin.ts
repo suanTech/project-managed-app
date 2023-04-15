@@ -29,7 +29,7 @@ export default async function handler(
         ).status(201).end();
       }
     } catch(err) {
-      res.status(401).json({err: "Error has occured while processing your request"})
+      res.status(401).json({message: "Cannot find email address. Please register"})
     }
   }
 }

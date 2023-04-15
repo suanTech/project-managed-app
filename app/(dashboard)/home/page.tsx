@@ -1,19 +1,14 @@
 import CreateNew from "@/components/CreateNew";
-import CreateProject from "@/components/CreateNew";
 import Greetings from "@/components/Greetings";
 import ProjectCard from "@/components/ProjectCard";
 import TaskCard from "@/components/TaskCard";
-import Button from "@/components/UI/Button";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { delay } from "@/lib/helper";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import styles from "./page.module.scss";
 
 const getData = async () => {
-  // try {
-    await delay(2000);
     const user = await getUserFromCookie(cookies());
     const projects = await db.project.findMany({
       where: {
@@ -24,7 +19,6 @@ const getData = async () => {
       },
     });
     return projects;
-
 };
 
 export default async function Home() {

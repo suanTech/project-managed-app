@@ -1,61 +1,64 @@
-@import '/styles/variables';
-@import '/styles/mixins';
+// @import '/styles/variables';
+// @import '/styles/mixins';
 
-@keyframes bounce {
-  50% {
-    transform: translateY(-2px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
+// @keyframes bounce {
+//   50% {
+//     transform: translateY(-2px);
+//   }
+//   100% {
+//     transform: translateY(0px);
+//   }
+// }
 
-button {
-  cursor: pointer;
-  font-weight: 400;
-  border-radius: 1.2rem;
-  border: none;
-  transition: all .2s ease-in-out;
-  &:hover,
-  &:active {
-    animation: bounce .6s;
-    box-shadow: 1px 1px 5px rgba(148, 148, 148, .4);
-  }
-  &.small {
-    padding: .35rem .75rem;
-    @include font-size($bodyS-font-sizes);
-  }
-  &.medium {
-    padding: .5rem 1rem;
-    @include font-size($bodyS-font-sizes);
-  }
-  &.large {
-    padding: .7rem 1.2rem;
-  }
-}
-.primary {
-  background: lighten($clr-accent, 3%);
-  box-shadow: 0px 2px 0 darken(rgb(223, 230, 213), 4%), 2px 4px 6px darken(rgb(223, 230, 213), 2%);
-  border: 1px solid darken($clr-accent, 1.4%);
-  color: white;
-  &:hover {
-    background: darken($clr-accent, 2.5%);
-    border: 1px solid rgba(#000, .05);
-    color: lighten($clr-accent, 23%); 
-    text-decoration: none;
-    text-shadow: -1px -1px 0 darken($clr-accent, 9.5%);
-    transition: all 250ms linear;
-  }
-};
-.secondary {
-  background: transparent;
-  color: black;
-  border: 2px solid #414141;
-  &:hover {
-    background: rgba(255, 255, 255, 0.5);
-  }
-};
-.text {
-  background: transparent;
-  color: black;
-}
+// button {
+//   cursor: pointer;
+//   font-weight: 400;
+//   border-radius: 1.2rem;
+//   border: none;
+//   transition: all .2s ease-in-out;
+//   &:hover {
+//     animation: bounce .6s;
+//     box-shadow: 1px 1px 5px rgba(148, 148, 148, .4);
+//   }
+//   &.small {
+//     padding: .35rem .75rem;
+//     @include font-size($bodyS-font-sizes);
+//   }
+//   &.medium {
+//     padding: .5rem 1rem;
+//     @include font-size($bodyS-font-sizes);
+//   }
+//   &.primary {
+//     background: lighten($clr-accent, 3%);
+//     box-shadow: 0px 2px 0 darken(rgb(223, 230, 213), 4%), 2px 4px 6px darken(rgb(223, 230, 213), 2%);
+//     border: 1px solid darken($clr-accent, 1.4%);
+//     color: white;
+//     &:hover {
+//       background: darken($clr-accent, 2.5%);
+//       border: 1px solid rgba(#000, .05);
+//       color: lighten($clr-accent, 23%); 
+//       text-decoration: none;
+//       text-shadow: -1px -1px 0 darken($clr-accent, 9.5%);
+//       transition: all 250ms linear;
+//     }
+//   };
+//   &.secondary {
+//     background: transparent;
+//     color: black;
+//     border: 2px solid #414141;
+//     &:hover {
+//       background: rgba(255, 255, 255, 0.5);
+//     }
+//   };
+//   &.confirm {
+//     background: $clr-warning;
+//     color: $clr-bg;
+//     &:hover {
+//       background: darken($clr-warning, 20%);
+//     }
+//   }
+//   &.text {
+//     background: transparent;
+//     color: black;
+//   }
+// }

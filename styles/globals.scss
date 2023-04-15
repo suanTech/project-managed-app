@@ -2,7 +2,7 @@
 @import "./variables";
 
 
-* {
+*, *::after, *::before {
   box-sizing: border-box;
   scroll-behavior: smooth;
   margin: 0;
@@ -10,12 +10,14 @@
   font-family: inherit;
 }
 html {
-  position: absolute;
+  position: relative;
   &.rainbow-mesh::before {
+    position: absolute;
     content: "";
     min-width: 100%;
-    min-height: 100vh;
+    height: 100%;
     position: fixed;
+    top: 0;
     background-color: #99d6ff;
     background-image: radial-gradient(
         at 36% 63%,
@@ -30,9 +32,10 @@ html {
       radial-gradient(at 62% 50%, hsla(210, 99%, 64%, 1) 0px, transparent 50%);
   }
   &.candy-mesh::before {
+    position: absolute;
     content: "";
     min-width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     position: fixed;
     z-index: -2;
     background-color: #99ccff;
@@ -55,7 +58,6 @@ body {
   height: 100vh;
   padding: 2.5em;
   color: $clr-body;
-  overflow: hidden;
 }
 .container {
   width: 100%;
@@ -65,11 +67,8 @@ body {
   padding: 1.8em;
   padding-right: 1rem;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  // overflow: scroll;
+  @include flexy($algn: center, $just: center);
+  overflow: hidden;
 }
 .dashboard {
   width: 100%;
@@ -94,6 +93,58 @@ p {
     @include font-size($bodyXS-font-sizes);
   }
 }
+button {
+  cursor: pointer;
+  font-weight: 400;
+  border-radius: 1.2rem;
+  border: none;
+  transition: all .2s ease-in-out;
+  &:hover {
+    animation: bounce .6s;
+    box-shadow: 1px 1px 5px rgba(148, 148, 148, .4);
+  }
+  &.small {
+    padding: .35rem .75rem;
+    @include font-size($bodyS-font-sizes);
+  }
+  &.medium {
+    padding: .5rem 1rem;
+    @include font-size($bodyS-font-sizes);
+  }
+  &.primary {
+    background: lighten($clr-accent, 3%);
+    box-shadow: 0px 2px 0 darken(rgb(223, 230, 213), 4%), 2px 4px 6px darken(rgb(223, 230, 213), 2%);
+    border: 1px solid darken($clr-accent, 1.4%);
+    color: white;
+    &:hover {
+      background: darken($clr-accent, 2.5%);
+      border: 1px solid rgba(#000, .05);
+      color: lighten($clr-accent, 23%); 
+      text-decoration: none;
+      text-shadow: -1px -1px 0 darken($clr-accent, 9.5%);
+      transition: all 250ms linear;
+    }
+  };
+  &.secondary {
+    background: transparent;
+    color: black;
+    border: 2px solid #414141;
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  };
+  &.confirm {
+    background: $clr-warning;
+    color: $clr-bg;
+    &:hover {
+      background: darken($clr-warning, 20%);
+    }
+  }
+  &.text {
+    background: transparent;
+    color: black;
+  }
+}
 .bold {
   font-weight: bold;
 }
@@ -102,6 +153,9 @@ p {
 }
 .muted {
   color: $clr-muted;
+}
+.warning {
+  color: $clr-warning;
 }
 a {
   color: inherit;
@@ -122,4 +176,12 @@ a {
   background-color: rgba(255, 255, 255, 0.4);
   border: 2px solid rgba(233, 234, 235, 0.4);
   border-radius: 2em;
+}
+@keyframes bounce {
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

@@ -56,10 +56,10 @@ export const createTask = (id:string, task: {name: string, description:string, d
     body: {id, task}
   })
 }
-export const updateStatus = (status: string) => {
+export const updateTask = (task: object, taskId: string) => {
   return fetcher({
-    url: "api/updateStatus",
+    url: "/api/updateTask",
     method: "PUT",
-    body: {status}
+    body: {task, taskId}
   })
 }

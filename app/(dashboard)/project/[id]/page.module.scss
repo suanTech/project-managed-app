@@ -1,0 +1,23 @@
+@import "/styles/mixins";
+@import "/styles/variables";
+
+.container {
+  height: 110%;
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 3rem;
+  overflow: scroll;
+  & > div {
+    height: 90.5%;
+    max-height: 640px;
+  }
+}
+.titleWrapper {
+  @include flexy($just: space-between, $algn: center);
+  h1 {
+    padding: 0;
+  }
+}
+.projectDescription {
+  padding: 1rem 0;
+}

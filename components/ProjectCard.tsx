@@ -18,7 +18,7 @@ export default function ProjectCard({ project }: { project: ProjectWithTasks }) 
   return (
     <Card className="project">
       <div>
-        <p className="small muted">{formatDate(project.createdAt)}</p>
+        <p className="small muted">{formatDate(project.createdAt, 'long')}</p>
       </div>
       <div className={styles.projectName}>
         <h2>{project.name}</h2>

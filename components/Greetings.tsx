@@ -1,7 +1,6 @@
 import { delay } from "@/lib/helper";
 import { getUserFromCookie } from "@/lib/auth";
 import { cookies } from "next/headers";
-import Button from "./UI/Button";
 import Card from "./UI/Card";
 
 const getUser = async () => {
@@ -20,9 +19,9 @@ const Greetings = async () => {
           <p>Check your daily tasks and schedule</p>
         </div>
         <div style={{marginTop: '1rem'}}>
-          <Button className="primary medium">
+          <button className="primary medium">
             <p className="small">Today's Schedule</p>
-          </Button>
+          </button>
         </div>
       </div>
       <div className="greetings-banner"></div>

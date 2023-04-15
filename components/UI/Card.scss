@@ -39,9 +39,9 @@
         right: 0;
         height: 100%;
         width: 60%;
-        background-image: url("../../assets/Saly-10.png");
+        background-image: url("../../assets/Saly-10.webP");
         background-repeat: no-repeat;
-        background-size: 300px, auto;
+        background-size: 240px, auto;
         background-position: right;
       }
     }
@@ -50,10 +50,39 @@
     margin: 0 1rem;
   }
   &.modal {
+    @include flexy($algn: center, $just: center, $dir: column);
     background-color: $clr-bg;
+    gap: 1.5em;
+    width: 50%;
+    min-width: 350px;
+    max-width: 450px;
+    height: 75%;
+    word-wrap: break-all;
+    position: absolute;
+    opacity: 0;
+    bottom: -200%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 3.5rem 2.8rem;
+    border-radius: 1em;
+    transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
+    &.open {
+      opacity: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &.small-card {
+      height: 230px;
+    }
   }
   &.task {
-    max-height: 630px;
-    overflow: auto;
+    padding-top: 3rem;
+    height: 100%;
+    max-height: 250px;
+    position: relative;
+  }
+  &.smallScreen {
+    max-height: 250px;
   }
 }

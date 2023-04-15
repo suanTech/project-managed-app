@@ -1,8 +1,7 @@
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { Task, TASK_STATUS } from "@prisma/client";
+import { TASK_STATUS } from "@prisma/client";
 import { cookies } from "next/headers";
-import Button from "./UI/Button";
 import Card from "./UI/Card";
 import styles from "./TaskCard.module.scss";
 import { formatDate } from "@/lib/helper";
@@ -25,14 +24,8 @@ const getData = async () => {
   return tasks;
 };
 
-export default async function TaskCard({
-  title,
-  tasks,
-}: {
-  title: string;
-  tasks: Task[];
-}) {
-  const data = tasks || (await getData());
+export default async function TaskCard() {
+  const data = await getData();
   return (
     <Card className="task">
       <div className={styles.titleWrapper}>
@@ -51,12 +44,12 @@ export default async function TaskCard({
               <th>Due Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styles.listContainer}>
             {data.map((task) => (
               <tr key={task.id}>
                 <td>{task.name}</td>
                 <td>{task.description}</td>
-                <td>{formatDate(task.due!)}</td>
+                <td>{formatDate(task.due!, "short")}</td>
               </tr>
             ))}
           </tbody>

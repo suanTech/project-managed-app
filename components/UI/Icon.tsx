@@ -11,5 +11,5 @@ export type IconProps = {
 
 export function Icon({ name, className, ...rest }: IconProps) {
   const IconComponent = icons[name];
-  return <IconComponent className={className} {...rest} />;
+  return <IconComponent aria-label={name} className={className} {...rest} />;
 }

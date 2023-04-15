@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import Button from "./UI/Button";
 import { createProject, createTask } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import styles from "./UI/Modal.module.scss";
@@ -38,7 +37,7 @@ export default function CreateNew({
         if (type === "project") {
           await createProject(formState.name, formState.description);
         } else {
-          await createTask(id, formState);
+          await createTask(id!, formState);
         }
         setModalOpen(false);
         router.refresh();
@@ -53,15 +52,15 @@ export default function CreateNew({
   const content = type === "project" ? projectContent : taskContent;
   return (
     <div>
-      <Button className="secondary small" onClick={() => setModalOpen(true)}>
+      <button className="secondary small" onClick={() => setModalOpen(true)}>
         + Add a {content.buttonText}
-      </Button>
+      </button>
       <Modal modalOpen={modalOpen} closeModal={() => setModalOpen(false)}>
-        <h1>{content.name}</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
+          <h1>{content.name}</h1>
           <Input
             placeholder={content.placeholder}
-            value={initialState.name}
+            value={formState.name}
             onChange={(e) =>
               setFormState((prev) => ({
                 ...prev,
@@ -72,7 +71,7 @@ export default function CreateNew({
           <Input
             className={styles.description}
             placeholder="description"
-            value={initialState.description}
+            value={formState.description}
             onChange={(e) =>
               setFormState((prev) => ({
                 ...prev,
@@ -81,21 +80,23 @@ export default function CreateNew({
             }
           />
           {content.name === "New Task" && (
-            <Input
-              className={styles.date}
-              type="date"
-              value={initialState.due}
-              onChange={(e) =>
-                setFormState((prev) => ({
-                  ...prev,
-                  due: e.target.value,
-                }))
-              }
-            />
+            <div className={styles.dueDate}>
+              <p>Due Date</p>
+              <Input
+                type="date"
+                value={formState.due}
+                onChange={(e) =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    due: e.target.value,
+                  }))
+                }
+              />
+            </div>
           )}
-          <Button className="primary medium" type="submit">
+          <button className="primary medium" type="submit">
             Create
-          </Button>
+          </button>
         </form>
       </Modal>
     </div>
