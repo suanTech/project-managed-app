@@ -19,9 +19,9 @@ export default function TaskList({ data }: { data: TaskProps[] }) {
     if (itemId === target) setTarget("");
     else setTarget(itemId);
   };
-  const handleDelete = async (task: object, taskId: string) => {
-    await updateTask(task, taskId);
-  };
+  // const handleDelete = async (task: object, taskId: string) => {
+  //   await updateTask(task, taskId);
+  // };
   return (
     <>
       <table className={styles.table}>
@@ -37,11 +37,11 @@ export default function TaskList({ data }: { data: TaskProps[] }) {
             <Fragment key={task.id}>
               <TaskItem
                 task={task}
-                onModalOpen={() => setModalOpen(true)}
+                // onModalOpen={() => setModalOpen(true)}
                 target={target}
                 onToggle={() => toggleDescription(task.id)}
               />
-              <tr>
+              {/* <tr>
                 <td>
                   <Modal
                     className="small-card"
@@ -59,7 +59,7 @@ export default function TaskList({ data }: { data: TaskProps[] }) {
                     </button>
                   </Modal>
                 </td>
-              </tr>
+              </tr> */}
             </Fragment>
           ))}
         </tbody>

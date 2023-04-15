@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { delay, formatDate } from "@/lib/helper";
 import { Fragment, useCallback, useState } from "react";
@@ -8,47 +8,71 @@ import { updateTask } from "@/lib/api";
 import { TaskProps } from "./TaskList";
 import { useRouter } from "next/navigation";
 import Spinner from "./UI/Spinner";
+import Modal from "./UI/Modal";
 
 interface ItemProps {
   task: TaskProps;
-  onModalOpen: () => void;
+  // onModalOpen: () => void;
   onToggle: () => void;
   target: string;
 }
 
-export default function TaskItem({ task, onModalOpen, onToggle, target }: ItemProps) {
+export default function TaskItem({
+  task,
+  // onModalOpen,
+  onToggle,
+  target,
+}: ItemProps) {
   const [values, setValues] = useState({
     name: task.name,
     description: task.description,
     due: task.due,
     deleted: task.deleted,
-    status: task.status
+    status: task.status,
   });
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const router = useRouter();
 
   const toggleEditMode = () => {
     setIsEditing(!isEditing);
   };
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      setIsLoading(true);
-      try {
-        await updateTask(values, task.id);
-        router.refresh();
-        await delay(3000);
-        setIsEditing(false);
-        setIsLoading(false)
-      } catch(err) {
-        console.log(err)
-      }
-
-    }, [values.status, values.name, values.description, values.due, values.deleted])
-    return (
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await updateTask(values, task.id);
+      router.refresh();
+      await delay(3000);
+      setIsEditing(false);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDelete = async (values: object, taskId: string) => {
+    setIsLoading(true);
+    setModalOpen(false);
+    try {
+      await updateTask(values, taskId);
+      router.refresh();
+      await delay(3000);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return (
     <Fragment>
-      {isEditing ? isLoading ? <tr><td><Spinner/></td></tr> : (
+      {isLoading && (
+        <tr>
+          <td>
+            <Spinner />
+          </td>
+        </tr>
+      )}
+      {isEditing ? (
         <tr>
           <td>
             <Input
@@ -87,13 +111,35 @@ export default function TaskItem({ task, onModalOpen, onToggle, target }: ItemPr
             </div>
           </td>
         </tr>
-      ) : !isEditing && !isLoading && (
-        <tr className={styles.item} onClick={onToggle}>
-          <td className={styles.taskName}>{task.name}</td>
-          <td>{formatDate(task.due!, "long")}</td>
-          <td>{task.status}</td>
-        </tr>
+      ) : (
+        !isEditing &&
+        !isLoading && (
+          <tr className={styles.item} onClick={onToggle}>
+            <td className={styles.taskName}>{task.name}</td>
+            <td>{formatDate(task.due!, "long")}</td>
+            <td>{task.status}</td>
+          </tr>
+        )
       )}
+      <tr>
+        <td>
+          <Modal
+            className="small-card"
+            modalOpen={modalOpen}
+            closeModal={() => setModalOpen(false)}
+          >
+            <h3 className="warning">
+              Are you sure you want to delete this task?
+            </h3>
+            <button
+              className="confirm medium"
+              onClick={() => handleDelete(values, task.id)}
+            >
+              Delete
+            </button>
+          </Modal>
+        </td>
+      </tr>
       <tr
         className={`${styles.taskDescription} ${
           target === task.id ? styles.show : ""
@@ -101,7 +147,7 @@ export default function TaskItem({ task, onModalOpen, onToggle, target }: ItemPr
       >
         <td colSpan={3}>
           <div>
-            <p>{task.description}</p>
+            <p>{task.description ? task.description : "No Description"}</p>
             <div className={styles.buttonWrapper}>
               <button
                 type="submit"
@@ -114,12 +160,13 @@ export default function TaskItem({ task, onModalOpen, onToggle, target }: ItemPr
               <button
                 className="secondary small"
                 name="delete"
-                onClick={isEditing 
-                  ? () => setIsEditing(!isEditing) 
-                  : () => {
-                    setValues(prev => ({...prev, deleted: true}))
-                    onModalOpen()
-                  }
+                onClick={
+                  isEditing
+                    ? () => setIsEditing(!isEditing)
+                    : () => {
+                        setValues((prev) => ({ ...prev, deleted: true }));
+                        setModalOpen(true);
+                      }
                 }
               >
                 {isEditing ? "Cancel" : "Delete task"}

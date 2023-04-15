@@ -1,31 +1,46 @@
 import { formatDate } from "@/lib/helper";
 import { Prisma } from "@prisma/client";
 import Card from "./UI/Card";
-import styles from './ProjectCard.module.scss';
+import styles from "./ProjectCard.module.scss";
 
 const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
   include: {
-    tasks: true,
+    tasks: {
+      where: {
+        deleted: false,
+      },
+    },
   },
 });
-export type ProjectWithTasks = Prisma.ProjectGetPayload<typeof projectWithTasks>;
+export type ProjectWithTasks = Prisma.ProjectGetPayload<
+  typeof projectWithTasks
+>;
 
-export default function ProjectCard({ project }: { project: ProjectWithTasks }) {
+export default function ProjectCard({
+  project,
+}: {
+  project: ProjectWithTasks;
+}) {
   const completeCount = project.tasks.filter(
-    (task) => task.status === "COMPLETED"
+    (task) => task.status === "COMPLETED" && task.deleted === false
   ).length;
-  const progress = Math.ceil((completeCount / project.tasks.length) * 100);
+  const progress = Math.ceil(
+    (completeCount /
+      project.tasks.filter((task) => task.deleted === false).length) *
+      100
+  );
   return (
     <Card className="project">
       <div>
-        <p className="small muted">{formatDate(project.createdAt, 'long')}</p>
+        <p className="small muted">{formatDate(project.createdAt, "long")}</p>
       </div>
       <div className={styles.projectName}>
         <h2>{project.name}</h2>
       </div>
       <div>
         <span className="sub">
-          {completeCount}/{project.tasks.length} completed
+          {completeCount}/
+          {project.tasks.filter((task) => task.deleted === false).length} completed
         </span>
       </div>
       <div>

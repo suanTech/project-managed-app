@@ -10,7 +10,7 @@ export default function SidebarLink({ link }: {link: any}) {
     isActive = true;
   }
   return (
-    <Link href={link.path}>
+    <Link href={link.path} >
       <Icon name={link.icon} size={40} className={`icon ${isActive && "active"}`}></Icon>
     </Link>
   );

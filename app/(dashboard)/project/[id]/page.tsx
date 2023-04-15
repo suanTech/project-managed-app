@@ -21,6 +21,9 @@ const getData = async (id: string) => {
         orderBy: {
           status: "asc",
         },
+        where: {
+          deleted: false
+        }
       },
     },
   });
