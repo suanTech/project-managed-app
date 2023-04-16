@@ -4,8 +4,8 @@ import { useCallback, useState } from "react";
 import { createProject, createTask } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import styles from "./UI/Modal.module.scss";
-import Input from "./UI/Input";
 import Modal from "./UI/Modal";
+import { delay } from "@/lib/helper";
 
 const projectContent = {
   name: "New Project",
@@ -33,14 +33,15 @@ export default function CreateNew({
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
+      setModalOpen(false);
       try {
         if (type === "project") {
           await createProject(formState.name, formState.description);
         } else {
           await createTask(id!, formState);
         }
-        setModalOpen(false);
         router.refresh();
+        await delay(2000);
       } catch (err) {
         setError(`Could not ${type}`);
       } finally {
@@ -58,7 +59,7 @@ export default function CreateNew({
       <Modal modalOpen={modalOpen} closeModal={() => setModalOpen(false)}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <h1>{content.name}</h1>
-          <Input
+          <input
             placeholder={content.placeholder}
             value={formState.name}
             onChange={(e) =>
@@ -68,7 +69,7 @@ export default function CreateNew({
               }))
             }
           />
-          <Input
+          <input
             className={styles.description}
             placeholder="description"
             value={formState.description}
@@ -82,7 +83,8 @@ export default function CreateNew({
           {content.name === "New Task" && (
             <div className={styles.dueDate}>
               <p>Due Date</p>
-              <Input
+              <input
+                required
                 type="date"
                 value={formState.due}
                 onChange={(e) =>

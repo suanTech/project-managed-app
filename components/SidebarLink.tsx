@@ -11,7 +11,7 @@ export default function SidebarLink({ link }: {link: any}) {
   }
   return (
     <Link href={link.path} >
-      <Icon name={link.icon} size={40} className={`icon ${isActive && "active"}`}></Icon>
+      <Icon name={link.icon} size="100%" className={`icon ${isActive && "active"}`}></Icon>
     </Link>
   );
 }

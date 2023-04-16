@@ -10,6 +10,7 @@
   & > div {
     height: 90.5%;
     max-height: 640px;
+    overflow: auto;
   }
 }
 .titleWrapper {

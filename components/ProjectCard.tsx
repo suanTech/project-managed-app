@@ -28,7 +28,7 @@ export default function ProjectCard({
     (completeCount /
       project.tasks.filter((task) => task.deleted === false).length) *
       100
-  );
+  ) || 0;
   return (
     <Card className="project">
       <div>

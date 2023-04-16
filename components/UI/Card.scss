@@ -7,15 +7,34 @@
   background-color: rgba(255, 255, 255, 0.55);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   &.sidebar {
-    height: 100%;
-    width: 9rem;
-    min-height: 300px;
-    @include flexy(
-      $dir: column,
-      $algn: center,
-      $just: space-between,
-      $wrap: wrap
-    );
+    @include flexy($just: space-between, $algn: center);
+    width: 95%;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    a {
+      width: 2.2rem;
+      align-content: center;
+      svg {
+        display: block;
+      }
+    }
+    @media (min-width: 590px) {
+      height: 100%;
+      width: 7rem;
+      min-height: 300px;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin: 0;
+      a {
+        width: 2.8rem;
+      }
+    }
+    @media (min-width: 768px) {
+      width: 9rem;
+    }
+    h1 {
+      padding: 0;
+    }
   }
   &.greetings {
     @include flexy($just: space-between);
@@ -49,37 +68,9 @@
   &.skeleton-card {
     margin: 0 1rem;
   }
-  &.modal {
-    @include flexy($algn: center, $just: center, $dir: column);
-    background-color: $clr-bg;
-    gap: 1.5em;
-    width: 50%;
-    min-width: 350px;
-    max-width: 450px;
-    height: 75%;
-    word-wrap: break-all;
-    position: absolute;
-    opacity: 0;
-    bottom: -200%;
-    left: 50%;
-    transform: translate(-50%, 0);
-    padding: 3.5rem 2.8rem;
-    border-radius: 1em;
-    transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out;
-    &.open {
-      opacity: 1;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    &.small-card {
-      height: 230px;
-    }
-  }
   &.task {
     padding-top: 3rem;
     height: 100%;
-    max-height: 250px;
     position: relative;
   }
   &.smallScreen {

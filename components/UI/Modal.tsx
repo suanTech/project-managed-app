@@ -11,7 +11,7 @@ interface ModalProps {
 export default function Modal({modalOpen, closeModal, className, children}: ModalProps) {
   return (
     <div className={`${styles.containerDiv} ${modalOpen && styles.open}`}>
-      <Card className={`${modalOpen && 'open'} modal ${className}`}>
+      <Card className={`${modalOpen && styles.open} ${styles.modalDiv} ${className}`}>
         <span className={styles.span}>
           <button className="text small" onClick={closeModal}>
             x

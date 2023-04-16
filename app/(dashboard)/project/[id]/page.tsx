@@ -5,6 +5,8 @@ import styles from "./page.module.scss";
 import Card from "@/components/UI/Card";
 import CreateNew from "@/components/CreateNew";
 import TaskList from "@/components/TaskList";
+import { Suspense } from "react";
+import GreetingsSkeleton from "@/components/skeletons/GreetingsSkeleton";
 
 interface Params {
   id: string;
@@ -22,8 +24,8 @@ const getData = async (id: string) => {
           status: "asc",
         },
         where: {
-          deleted: false
-        }
+          deleted: false,
+        },
       },
     },
   });
@@ -61,7 +63,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
         {tasks && tasks.length ? (
           <>
-          <TaskList data={tasks} />
+            <TaskList data={tasks} />
           </>
         ) : (
           <div>No Tasks</div>

@@ -2,9 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { register, signin } from "@/lib/api";
-import Input from "./UI/Input";
 import Card from "./UI/Card";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import styles from "./AuthForm.module.scss";
 import Link from "next/link";
 
@@ -58,7 +57,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             <div className={styles.nameField}>
               <div className={styles.nameWrapper}>
                 <p className={`${styles.inputLabel} small`}>First Name</p>
-                <Input
+                <input
                   required
                   placeholder="First Name"
                   value={formState.firstName}
@@ -73,7 +72,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               </div>
               <div className={styles.nameWrapper}>
                 <p className={`${styles.inputLabel} small`}>Last Name</p>
-                <Input
+                <input
                   required
                   placeholder="Last Name"
                   value={formState.lastName}
@@ -90,7 +89,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           )}
           <div className={styles.fieldWrapper}>
             <p className={`${styles.inputLabel} small`}>Email</p>
-            <Input
+            <input
               required
               type="email"
               placeholder="email"
@@ -103,7 +102,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           </div>
           <div className={styles.fieldWrapper}>
             <p className={`${styles.inputLabel} small`}>Password</p>
-            <Input
+            <input
               required
               type="password"
               placeholder="password"
