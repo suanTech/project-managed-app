@@ -25,3 +25,22 @@
     align-items: $algn;
     flex-grow: $grow;
   }
+
+  @mixin primary-btn(
+    $bg: null,
+    $text: null,
+  ) {
+    background: lighten($bg, 3%);
+    box-shadow: 0px 2px 0 darken(rgb(232, 237, 232), 4%),
+      1px 4px 6px darken(rgb(238, 240, 236), 2%);
+    border: 1px solid darken($bg, 1.4%);
+    color: white;
+    &:hover {
+      background: darken($bg, 2.5%);
+      border: 1px solid rgba(#000, 0.05);
+      color: lighten($bg, 23%);
+      text-decoration: none;
+      text-shadow: -1px -1px 0 darken($bg, 9.5%);
+      transition: all 250ms linear;
+    }
+  }

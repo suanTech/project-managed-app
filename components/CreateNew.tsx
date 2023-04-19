@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { createProject, createTask } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import styles from "./UI/Modal.module.scss";
 import Modal from "./UI/Modal";
 import { delay } from "@/lib/helper";
+import { LoadingContext } from "@/app/(dashboard)/layout";
 
 const projectContent = {
   name: "New Project",
@@ -28,12 +29,14 @@ export default function CreateNew({
 }) {
   const [formState, setFormState] = useState({ ...initialState });
   const [modalOpen, setModalOpen] = useState(false);
+  const {setIsLoading} = useContext(LoadingContext);
   const [error, setError] = useState("");
   const router = useRouter();
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
       setModalOpen(false);
+      setIsLoading(true);
       try {
         if (type === "project") {
           await createProject(formState.name, formState.description);
@@ -42,6 +45,7 @@ export default function CreateNew({
         }
         router.refresh();
         await delay(2000);
+        setIsLoading(false);
       } catch (err) {
         setError(`Could not ${type}`);
       } finally {
@@ -52,7 +56,7 @@ export default function CreateNew({
   );
   const content = type === "project" ? projectContent : taskContent;
   return (
-    <div>
+    <>
       <button className="secondary small" onClick={() => setModalOpen(true)}>
         + Add a {content.buttonText}
       </button>
@@ -101,6 +105,6 @@ export default function CreateNew({
           </button>
         </form>
       </Modal>
-    </div>
+    </>
   );
 }

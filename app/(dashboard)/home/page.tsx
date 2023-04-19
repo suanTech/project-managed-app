@@ -8,6 +8,11 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import styles from "./page.module.scss";
 
+export const metadata = {
+  title: "Home",
+  description: "Homepage",
+};
+
 const getData = async () => {
     const user = await getUserFromCookie(cookies());
     const projects = await db.project.findMany({

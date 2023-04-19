@@ -4,9 +4,20 @@
 .table {
   width: 100%;
   text-align: left;
-  margin-top: 0.5rem;
+  border-spacing: 0;
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
   thead th {
-    padding-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(#e1efe9, 0.85);
+    backdrop-filter: blur(6px) saturate(180%);
+    border: 1px solid lighten($clr-muted, 80%);
+    border-left: none;
+    border-right: none;
+    // border-radius: 5px;
     @include font-size($bodyS-font-sizes);
     &:first-child {
       width: 40%;
@@ -16,13 +27,14 @@
 .item {
   position: relative;
   align-items: center;
-  z-index: 2;
+  z-index: 0;
+  transition: background-color .25s ease-out;
   &:hover {
-    background-color: rgba($clr-bg, 0.87);
+    background-color: rgba($clr-bg, 0.67);
   }
   td {
     cursor: pointer;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     &.taskName {
       position: relative;
       &::before {
@@ -32,6 +44,10 @@
       }
     }
   }
+}
+.inputWrapper input, .dropdown {
+  margin-top: .5rem;
+  
 }
 
 .taskDescription {
@@ -48,13 +64,12 @@
     height: 0px;
   }
   div {
-    text-align: left;
-    margin-top: .8rem;
+    margin-top: 0.8rem;
     p {
-      padding: 1.5rem 0;
+      padding: 1rem 0;
     }
     input {
-      margin: .8rem 0;
+      margin: 0.8rem 0;
       width: 100%;
     }
   }
@@ -68,20 +83,9 @@
     }
   }
 }
-
-.buttonWrapper {
-  width: 100%;
-  @include flexy($just: center, $algn: center);
-  gap: 2rem;
-  button {
-    margin: 0;
-  }
-}
-
 .dropdown {
   border: 1px solid rgb(159, 155, 159);
   border-radius: 0.5rem;
-  width: 90%;
   font-size: 0.9rem;
   transition: background-color 0.2s ease-in-out;
   select {
@@ -90,5 +94,14 @@
     width: 97%;
     height: 100%;
     padding: 0.6rem 0.6rem;
+  }
+}
+
+.buttonWrapper {
+  width: 100%;
+  @include flexy($just: center, $algn: center);
+  gap: 2rem;
+  button {
+    margin: 0;
   }
 }

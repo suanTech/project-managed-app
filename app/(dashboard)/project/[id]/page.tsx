@@ -5,8 +5,9 @@ import styles from "./page.module.scss";
 import Card from "@/components/UI/Card";
 import CreateNew from "@/components/CreateNew";
 import TaskList from "@/components/TaskList";
+import Link from "next/link";
 import { Suspense } from "react";
-import GreetingsSkeleton from "@/components/skeletons/GreetingsSkeleton";
+import Spinner from "@/components/UI/Spinner";
 
 interface Params {
   id: string;
@@ -41,33 +42,49 @@ const getData = async (id: string) => {
     }),
   };
 };
+export const generateMetadata = async ({
+  params,
+  searchParams,
+}: {
+  params: Params;
+  searchParams: Params;
+}) => {
+  const project = await getData(params.id);
+  return { title: project.name, description: project.description };
+};
 export default async function ProjectPage({ params }: { params: Params }) {
   const project = await getData(params.id);
   const tasks = project.tasks;
   return (
     <div className={styles.container}>
-      {/* <DetailedProject project={project} tasks={project.tasks}/> */}
       <Card>
-        <div className={styles.titleWrapper}>
-          <div>
-            <h1>{project.name}</h1>
+        <div>
+          <div className={styles.goBack}>
+            <Link href="/home">
+              <p className="small">◂ back to dashboard</p>
+            </Link>
           </div>
-          <div>
-            <CreateNew type="task" id={project.id!} />
+          <div className={styles.titleWrapper}>
+            <div>
+              <h1>{project.name}</h1>
+            </div>
+            <div className={styles.addBtn}>
+              <CreateNew type="task" id={project.id!} />
+            </div>
+          </div>
+          <div className={styles.projectDescription}>
+            <p className="sub">
+              <i>Description: {project.description}</i>
+            </p>
+          </div>
+          <div className={styles.taskList}>
+            {tasks && tasks.length ? (
+              <TaskList data={tasks} />
+            ) : (
+              <div>No Tasks</div>
+            )}
           </div>
         </div>
-        <div className={styles.projectDescription}>
-          <p className="sub">
-            <i>Description: {project.description}</i>
-          </p>
-        </div>
-        {tasks && tasks.length ? (
-          <>
-            <TaskList data={tasks} />
-          </>
-        ) : (
-          <div>No Tasks</div>
-        )}
       </Card>
     </div>
   );

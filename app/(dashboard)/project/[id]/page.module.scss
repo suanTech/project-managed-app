@@ -8,17 +8,64 @@
   margin-bottom: 3rem;
   overflow: scroll;
   & > div {
-    height: 90.5%;
-    max-height: 640px;
-    overflow: auto;
+    height: 92%;
+    & > div {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  @media (min-width: 590px) {
+    & > div {
+      height: 90.5%;
+      max-height: 700px;
+      padding-top: 2rem;
+      & > div {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
+.goBack {
+  display: none;
+  position: absolute;
+  top: 22vh;
+  left: 10%;
+  @media (min-width: 590px) {
+    display: block;
+    top: 3rem;
+    left: auto;
+    margin-bottom: 2rem;
+    height: 2rem;
+  }
+  p {
+    --strike: 0;
+    transition: background-size .5s ease;
+    background: linear-gradient(90deg, transparent, $clr-accent 0) no-repeat 
+              right bottom / calc(#{var(--strike)} * 100%) .1em;
+    &:hover {
+      color: $clr-accent;
+      --strike: 1;
+      background-position-x: left;
+    }
   }
 }
 .titleWrapper {
+  position: relative;
   @include flexy($just: space-between, $algn: center);
   h1 {
     padding: 0;
   }
+  .addBtn {
+    position: relative;
+    z-index: 5;
+  }
 }
 .projectDescription {
   padding: 1rem 0;
+}
+.taskList {
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+  z-index: 4;
 }

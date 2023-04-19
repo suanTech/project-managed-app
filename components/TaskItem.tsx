@@ -1,13 +1,14 @@
 "use client";
 
 import { delay, formatDate } from "@/lib/helper";
-import { Fragment, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import styles from "./TaskItem.module.scss";
 import { updateTask } from "@/lib/api";
 import { TaskProps } from "./TaskList";
 import { useRouter } from "next/navigation";
 import Spinner from "./UI/Spinner";
 import Modal from "./UI/Modal";
+import { LoadingContext } from "@/app/(dashboard)/layout";
 
 interface ItemProps {
   task: TaskProps;
@@ -22,15 +23,14 @@ export default function TaskItem({ task }: ItemProps) {
     status: task.status,
   });
   const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const {isLoading, setIsLoading} = useContext(LoadingContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [target, setTarget] = useState("");
+  const router = useRouter();
   const toggleDescription = (itemId: string) => {
     if (itemId === target) setTarget("");
     else setTarget(itemId);
   };
-  const router = useRouter();
-
   const toggleEditMode = () => {
     setIsEditing(!isEditing);
   };
@@ -61,15 +61,15 @@ export default function TaskItem({ task }: ItemProps) {
   };
   return (
     <Fragment>
-      {isLoading && (
+      {/* {isLoading && (
         <tr>
           <td>
             <Spinner />
           </td>
         </tr>
-      )}
-      {isEditing && !isLoading ? (
-        <tr>
+      )} */}
+      {isEditing ? (
+        <tr className={styles.inputWrapper}>
           <td>
             <input
               required
@@ -110,7 +110,8 @@ export default function TaskItem({ task }: ItemProps) {
         </tr>
       ) : (
         !isEditing &&
-        !isLoading && (
+        // !isLoading && 
+        (
           <tr
             className={styles.item}
             onClick={() => toggleDescription(task.id)}
@@ -149,12 +150,10 @@ export default function TaskItem({ task }: ItemProps) {
                   />
                 </>
               ) : (
-                <>
-                  <span className="bold">Description</span>
-                  <p>
-                    {task.description ? task.description : "No Description"}
-                  </p>
-                </>
+                <p>
+                  <span className="bold">Description: </span>
+                  {task.description ? task.description : "No Description"}
+                </p>
               )
             ) : (
               ""
@@ -199,7 +198,7 @@ export default function TaskItem({ task }: ItemProps) {
               Are you sure you want to delete this task?
             </h3>
             <button
-              className="confirm medium"
+              className="primary-confirm medium"
               onClick={() => handleDelete(values, task.id)}
             >
               Delete
