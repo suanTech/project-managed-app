@@ -31,7 +31,7 @@ export default function TaskList({ data }: { data: TaskProps[] }) {
               </td>
             </tr>
           ) : (
-            data.filter(task => task.deletedAt === null).map((task) => <TaskItem key={task.id} task={task} />)
+            data.filter(task => !task.deletedAt).map((task) => <TaskItem key={task.id} task={task} />)
           )}
         </tbody>
       </table>
