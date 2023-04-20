@@ -63,10 +63,26 @@ export const updateTask = (task: object, taskId: string) => {
     body: {task, taskId}
   })
 }
-export const updateProject = (project: object, projectId: string) => {
+export const updateProject = (project: {name: string, description: string}, projectId: string) => {
   return fetcher({
     url: "/api/updateProject",
     method: "PUT",
     body: {project, projectId}
+  })
+}
+
+export const deleteTask = (taskId: string) => {
+  return fetcher({
+    url: "/api/deleteTask",
+    method: "PUT",
+    body: {taskId}
+  })
+}
+
+export const deleteProject = (projectId: string) => {
+  return fetcher({
+    url: "/api/deleteProject ",
+    method: "PUT",
+    body: {projectId}
   })
 }

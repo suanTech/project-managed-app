@@ -19,12 +19,12 @@ const getData = async () => {
   const projects = await db.project.findMany({
     where: {
       ownerId: user?.id,
-      deleted: false,
+      deletedAt: null,
     },
     include: {
       tasks: {
         where: {
-          deleted: false,
+          deletedAt: null,
         },
       }
     },

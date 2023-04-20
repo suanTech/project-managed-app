@@ -13,8 +13,7 @@ export default async function handler(
           id: req.body.projectId
         },
         data: {
-          name: req.body.project.name,
-          description: req.body.project.description,
+          deletedAt: new Date()
         },
       });
       res.status(200).json(result);

@@ -23,9 +23,6 @@ const getData = async (id: string) => {
         orderBy: {
           status: "asc",
         },
-        where: {
-          deleted: false,
-        },
       },
     },
   });
@@ -34,12 +31,14 @@ const getData = async (id: string) => {
     due: project?.due?.toJSON(),
     createdAt: project?.createdAt.toJSON(),
     updatedAt: project?.updatedAt.toJSON(),
+    deletedAt: project?.deletedAt?.toJSON(),
     tasks: project?.tasks.map((task) => {
       return {
         ...task,
         due: task.due?.toJSON(),
         createdAt: task.createdAt.toJSON(),
         updatedAt: task.updatedAt.toJSON(),
+        deletedAt: task?.deletedAt?.toJSON()
       };
     }),
   };

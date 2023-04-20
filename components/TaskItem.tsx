@@ -3,7 +3,7 @@
 import { delay, formatDate } from "@/lib/helper";
 import { Fragment, useContext, useState } from "react";
 import styles from "./TaskItem.module.scss";
-import { updateTask } from "@/lib/api";
+import { deleteTask, updateTask } from "@/lib/api";
 import { TaskProps } from "./TaskList";
 import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
@@ -18,7 +18,6 @@ export default function TaskItem({ task }: ItemProps) {
     name: task.name,
     description: task.description,
     due: task.due,
-    deleted: task.deleted,
     status: task.status,
   });
   const [isEditing, setIsEditing] = useState(false);
@@ -33,11 +32,24 @@ export default function TaskItem({ task }: ItemProps) {
   const toggleEditMode = () => {
     setIsEditing(!isEditing);
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsLoading(true);
     setIsEditing(!isEditing);
     try {
       await updateTask(values, task.id);
+      router.refresh();
+      await delay(2000);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleDelete = async () => {
+    setIsLoading(true);
+    setModalOpen(false);
+    try {
+      await deleteTask(task.id);
       router.refresh();
       await delay(2000);
       setIsLoading(false);
@@ -151,10 +163,7 @@ export default function TaskItem({ task }: ItemProps) {
                 onClick={
                   isEditing
                     ? () => setIsEditing(!isEditing)
-                    : () => {
-                      setModalOpen(true);
-                    }
-                }
+                    : () => setModalOpen(true)}
               >
                 {isEditing ? "Cancel" : "Delete task"}
               </button>
@@ -167,17 +176,12 @@ export default function TaskItem({ task }: ItemProps) {
           <Modal
             className="small-card"
             modalOpen={modalOpen}
-            closeModal={() => {
-              setModalOpen(false);
-            }}
+            closeModal={() => setModalOpen(false)}
           >
             <h3 className="warning" style={{ textAlign: "center" }}>
               Are you sure you want to delete this task?
             </h3>
-            <button className="primary-confirm medium" onClick={() => {
-              setValues(prev => ({ ...prev, deleted: true }));
-              return handleSubmit();
-              }}>
+            <button className="primary-confirm medium" onClick={handleDelete}>
               Delete
             </button>
           </Modal>

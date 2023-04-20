@@ -8,13 +8,12 @@ export default async function handler(
   if (req.method === "PUT") {
     console.log(req.body)
     try {
-      const result = await db.project.update({
+      const result = await db.task.update({
         where: {
-          id: req.body.projectId
+          id: req.body.taskId
         },
         data: {
-          name: req.body.project.name,
-          description: req.body.project.description,
+          deletedAt: new Date()
         },
       });
       res.status(200).json(result);

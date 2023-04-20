@@ -7,7 +7,7 @@ const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
   include: {
     tasks: {
       where: {
-        deleted: false,
+        deletedAt: null,
       },
     },
   },
@@ -22,11 +22,11 @@ export default function ProjectCard({
   project: ProjectWithTasks;
 }) {
   const completeCount = project.tasks.filter(
-    (task) => task.status === "COMPLETED" && task.deleted === false
+    (task) => task.status === "COMPLETED" && task.deletedAt === null
   ).length;
   const progress = Math.ceil(
     (completeCount /
-      project.tasks.filter((task) => task.deleted === false).length) *
+      project.tasks.filter((task) => task.deletedAt === null).length) *
       100
   ) || 0;
   return (
@@ -40,7 +40,7 @@ export default function ProjectCard({
       <div>
         <span className="sub">
           {completeCount}/
-          {project.tasks.filter((task) => task.deleted === false).length} completed
+          {project.tasks.filter((task) => task.deletedAt === null).length} completed
         </span>
       </div>
       <div>

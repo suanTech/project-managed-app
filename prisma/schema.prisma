@@ -32,7 +32,7 @@ model Project {
   description String?
   due         DateTime?
   tasks       Task[]
-  deleted     Boolean   @default(false)
+  deletedAt   DateTime? 
 
   @@unique([ownerId, name])
   @@index([ownerId, id])
@@ -57,7 +57,7 @@ model Task {
   description String
 
   due         DateTime?
-  deleted     Boolean     @default(false)
+  deletedAt   DateTime?
 
   @@index([ownerId])
 }

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Icon } from "./UI/Icon";
 import Modal from "./UI/Modal";
 import { useRouter } from "next/navigation";
-import { updateProject } from "@/lib/api";
+import { deleteProject, updateProject } from "@/lib/api";
 import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
 import { Project } from "@prisma/client";
@@ -15,10 +15,12 @@ export type ProjectProps = Omit<
   due: string | undefined;
   createdAt: string | undefined;
   updatedAt: string | undefined;
+  deletedAt: string | null;
   tasks: {
     due: string | undefined;
     createdAt: string | undefined;
     updatedAt: string | undefined;
+    deletedAt: string | null;
   };
 };
 export default function EditButton({ project }: { project: ProjectProps }) {
@@ -27,7 +29,6 @@ export default function EditButton({ project }: { project: ProjectProps }) {
   const [values, setValues] = useState({
     name: project.name,
     description: project.description || "",
-    deleted: project.deleted === false,
   });
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,9 +44,8 @@ export default function EditButton({ project }: { project: ProjectProps }) {
         delay(2000);
       }
     } else if ((e.target as HTMLButtonElement).name === "delete") {
-      // setValues((prev) => ({...prev, deleted: true}))
       try {
-        await updateProject(values, project.id);
+        await deleteProject(project.id);
       } catch (err) {
         console.log(err);
       } finally {

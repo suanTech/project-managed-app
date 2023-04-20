@@ -11,9 +11,9 @@ const getData = async () => {
   const tasks = db.task.findMany({
     where: {
       ownerId: user?.id,
+      deletedAt: null,
       NOT: {
         status: TASK_STATUS.COMPLETED,
-        deleted: true,
       },
     },
     take: 5,
