@@ -20,7 +20,7 @@ const taskContent = {
 };
 
 const initialState = { name: "", description: "", due: "" };
-export default function CreateNew({
+export default function AddButton({
   type,
   id,
 }: {
@@ -29,7 +29,7 @@ export default function CreateNew({
 }) {
   const [formState, setFormState] = useState({ ...initialState });
   const [modalOpen, setModalOpen] = useState(false);
-  const {setIsLoading} = useContext(LoadingContext);
+  const { setIsLoading } = useContext(LoadingContext);
   const [error, setError] = useState("");
   const router = useRouter();
   const handleSubmit = useCallback(

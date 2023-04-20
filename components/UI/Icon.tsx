@@ -6,7 +6,7 @@ export type IconName = keyof typeof icons;
 
 export type IconProps = {
   name: IconName;
-  className: string
+  className?: string
 } & icons.IconProps;
 
 export function Icon({ name, className, ...rest }: IconProps) {

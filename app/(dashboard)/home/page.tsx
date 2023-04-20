@@ -1,4 +1,4 @@
-import CreateNew from "@/components/CreateNew";
+import CreateNew from "@/components/AddButton";
 import Greetings from "@/components/Greetings";
 import ProjectCard from "@/components/ProjectCard";
 import TaskCard from "@/components/TaskCard";
@@ -7,6 +7,7 @@ import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import styles from "./page.module.scss";
+import ProjectContainer from "./ProjectContainer";
 
 export const metadata = {
   title: "Home",
@@ -14,16 +15,21 @@ export const metadata = {
 };
 
 const getData = async () => {
-    const user = await getUserFromCookie(cookies());
-    const projects = await db.project.findMany({
-      where: {
-        ownerId: user?.id,
-      },
-      include: {
-        tasks: true,
-      },
-    });
-    return projects;
+  const user = await getUserFromCookie(cookies());
+  const projects = await db.project.findMany({
+    where: {
+      ownerId: user?.id,
+      deleted: false,
+    },
+    include: {
+      tasks: {
+        where: {
+          deleted: false,
+        },
+      }
+    },
+  });
+  return projects;
 };
 
 export default async function Home() {
@@ -37,22 +43,26 @@ export default async function Home() {
         </div>
         <div className={styles.projectWrapper}>
           <div className={styles.newProject}>
-            <CreateNew type='project' />
+            <CreateNew type="project" />
           </div>
-          {projects.map((project) => (
-            <div className={styles.project} key={project.id}>
-              <Link href={`/project/${project.id}`}>
-                <ProjectCard project={project} />
-              </Link>
-            </div>
-          ))}
+          <ProjectContainer>
+            {projects.map((project) => (
+              <div className={styles.project} key={project.id}>
+                <Link href={`/project/${project.id}`}>
+                  <ProjectCard project={project} />
+                </Link>
+              </div>
+            ))}
+          </ProjectContainer>
         </div>
         <div className={styles.taskWrapper}>
           <div className={styles.task}>
             {/* @ts-expect-error */}
             <TaskCard />
           </div>
-          <div><br /></div>
+          <div>
+            <br />
+          </div>
         </div>
       </div>
     </div>

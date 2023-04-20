@@ -32,7 +32,7 @@
     .newProject {
       @include flexy($just: center);
     }
-    & > .project {
+    .project {
       height: 32vh;
       min-height: 130px;
       max-height: 200px;

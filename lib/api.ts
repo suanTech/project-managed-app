@@ -63,3 +63,10 @@ export const updateTask = (task: object, taskId: string) => {
     body: {task, taskId}
   })
 }
+export const updateProject = (project: object, projectId: string) => {
+  return fetcher({
+    url: "/api/updateProject",
+    method: "PUT",
+    body: {project, projectId}
+  })
+}

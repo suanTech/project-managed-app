@@ -6,7 +6,6 @@ import styles from "./TaskItem.module.scss";
 import { updateTask } from "@/lib/api";
 import { TaskProps } from "./TaskList";
 import { useRouter } from "next/navigation";
-import Spinner from "./UI/Spinner";
 import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/(dashboard)/layout";
 
@@ -23,7 +22,7 @@ export default function TaskItem({ task }: ItemProps) {
     status: task.status,
   });
   const [isEditing, setIsEditing] = useState(false);
-  const {isLoading, setIsLoading} = useContext(LoadingContext);
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [target, setTarget] = useState("");
   const router = useRouter();
@@ -34,8 +33,7 @@ export default function TaskItem({ task }: ItemProps) {
   const toggleEditMode = () => {
     setIsEditing(!isEditing);
   };
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setIsLoading(true);
     setIsEditing(!isEditing);
     try {
@@ -47,27 +45,8 @@ export default function TaskItem({ task }: ItemProps) {
       console.log(err);
     }
   };
-  const handleDelete = async (values: object, taskId: string) => {
-    setIsLoading(true);
-    setModalOpen(false);
-    try {
-      await updateTask(values, taskId);
-      router.refresh();
-      await delay(2000);
-      setIsLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <Fragment>
-      {/* {isLoading && (
-        <tr>
-          <td>
-            <Spinner />
-          </td>
-        </tr>
-      )} */}
       {isEditing ? (
         <tr className={styles.inputWrapper}>
           <td>
@@ -109,9 +88,7 @@ export default function TaskItem({ task }: ItemProps) {
           </td>
         </tr>
       ) : (
-        !isEditing &&
-        // !isLoading && 
-        (
+        !isEditing && (
           <tr
             className={styles.item}
             onClick={() => toggleDescription(task.id)}
@@ -175,9 +152,8 @@ export default function TaskItem({ task }: ItemProps) {
                   isEditing
                     ? () => setIsEditing(!isEditing)
                     : () => {
-                        setValues((prev) => ({ ...prev, deleted: true }));
-                        setModalOpen(true);
-                      }
+                      setModalOpen(true);
+                    }
                 }
               >
                 {isEditing ? "Cancel" : "Delete task"}
@@ -186,21 +162,22 @@ export default function TaskItem({ task }: ItemProps) {
           </div>
         </td>
       </tr>
-
       <tr>
         <td>
           <Modal
             className="small-card"
             modalOpen={modalOpen}
-            closeModal={() => setModalOpen(false)}
+            closeModal={() => {
+              setModalOpen(false);
+            }}
           >
-            <h3 className="warning">
+            <h3 className="warning" style={{ textAlign: "center" }}>
               Are you sure you want to delete this task?
             </h3>
-            <button
-              className="primary-confirm medium"
-              onClick={() => handleDelete(values, task.id)}
-            >
+            <button className="primary-confirm medium" onClick={() => {
+              setValues(prev => ({ ...prev, deleted: true }));
+              return handleSubmit();
+              }}>
               Delete
             </button>
           </Modal>
