@@ -1,40 +1,23 @@
-"use client";
-import { Task } from "@prisma/client";
-import styles from "./TaskItem.module.scss";
-import TaskItem from "./TaskItem";
-import { useContext } from "react";
-import { LoadingContext } from "@/app/(dashboard)/layout";
-import Spinner from "./UI/Spinner";
-export type TaskProps = Omit<Task, "due" | "createdAt" | "updatedAt"> & {
-  due: string | undefined;
-  createdAt: string | undefined;
-  updatedAt: string | undefined;
-};
+import React from "react";
+import styles from "./AllTask.module.scss";
+import { formatDate } from "@/lib/helper";
+import EditButton from "./EditButton";
+import { TaskWithProject } from "./AllTask";
 
-export default function TaskList({ data }: { data: TaskProps[] }) {
-  const { isLoading } = useContext(LoadingContext);
+export const TaskList = ({ tasks }: { tasks: TaskWithProject[] }) => {
   return (
-    <>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Task Name</th>
-            <th>Due Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading ? (
-            <tr>
-              <td>
-                <Spinner />
-              </td>
-            </tr>
-          ) : (
-            data.filter(task => !task.deletedAt).map((task) => <TaskItem key={task.id} task={task} />)
-          )}
-        </tbody>
-      </table>
-    </>
+    <div className={styles.taskWrapper}>
+      {tasks.map((task) => (
+        <div className={styles.task} key={task.id}>
+          <div className={styles.titleWrapper}>
+            <h3>{task.name}</h3>
+            <EditButton type={task} />
+          </div>
+          <p>{task.description}</p>
+          <p>Due: {formatDate(task.due, "short")}</p>
+          <p>Project: {task.project.name}</p>
+        </div>
+      ))}
+    </div>
   );
-}
+};

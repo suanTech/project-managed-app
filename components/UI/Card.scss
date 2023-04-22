@@ -20,7 +20,7 @@
     }
     @media (min-width: 590px) {
       height: 100%;
-      width: 7rem;
+      width: 6.5rem;
       min-height: 300px;
       flex-direction: column;
       flex-wrap: wrap;
@@ -28,9 +28,6 @@
       a {
         width: 2.8rem;
       }
-    }
-    @media (min-width: 768px) {
-      width: 9rem;
     }
     h1 {
       padding: 0;

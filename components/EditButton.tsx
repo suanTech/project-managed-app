@@ -8,10 +8,12 @@ import { deleteProject, updateProject } from "@/lib/api";
 import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
 import { Project } from "@prisma/client";
+import { TaskProps } from "./TaskTable";
 export type ProjectProps = Omit<
   Project,
   "due" | "createdAt" | "updatedAt" | "tasks"
 > & {
+  type: "project";
   due: string | undefined;
   createdAt: string | undefined;
   updatedAt: string | undefined;
@@ -23,12 +25,13 @@ export type ProjectProps = Omit<
     deletedAt: string | null;
   };
 };
-export default function EditButton({ project }: { project: ProjectProps }) {
+
+export default function EditButton({ type }: { type: ProjectProps | TaskProps }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [values, setValues] = useState({
-    name: project.name,
-    description: project.description || "",
+    name: type.name,
+    description: type.description || "",
   });
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,7 +39,7 @@ export default function EditButton({ project }: { project: ProjectProps }) {
     setModalOpen(false);
     if ((e.target as HTMLButtonElement).name === "update") {
       try {
-        await updateProject(values, project.id);
+        await updateProject(values, type.id);
       } catch (err) {
         console.log(err);
       } finally {
@@ -45,7 +48,7 @@ export default function EditButton({ project }: { project: ProjectProps }) {
       }
     } else if ((e.target as HTMLButtonElement).name === "delete") {
       try {
-        await deleteProject(project.id);
+        await deleteProject(type.id);
       } catch (err) {
         console.log(err);
       } finally {
@@ -55,13 +58,13 @@ export default function EditButton({ project }: { project: ProjectProps }) {
       }
     }
   };
+  const content = type.type === "project" ? "project" : "task"
   return (
     <>
-      <button className="text warning" onClick={() => setModalOpen(true)}>
+      <button className="warning icon" onClick={() => setModalOpen(true)}>
         <Icon name="Settings" size="16" />
       </button>
       <Modal
-        className="small-card"
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
       >
@@ -69,7 +72,7 @@ export default function EditButton({ project }: { project: ProjectProps }) {
           {isDeleting ? (
             <>
               <h3 className="warning" style={{ textAlign: "center" }}>
-                Are you sure you want to delete this project?
+                Are you sure you want to delete this {content}?
               </h3>
               <button
                 type="submit"
@@ -82,9 +85,9 @@ export default function EditButton({ project }: { project: ProjectProps }) {
             </>
           ) : (
             <>
-              <h1>Update Project</h1>
+              <h1>Update {content}</h1>
               <input
-                placeholder={project.name}
+                placeholder={type.name}
                 value={values.name}
                 onChange={(e) =>
                   setValues((prev) => ({
@@ -95,7 +98,7 @@ export default function EditButton({ project }: { project: ProjectProps }) {
               />
               <input
                 className={styles.description}
-                placeholder={project.description || "enter description"}
+                placeholder={type.description || "enter description"}
                 value={values.description}
                 onChange={(e) =>
                   setValues((prev) => ({
@@ -104,7 +107,7 @@ export default function EditButton({ project }: { project: ProjectProps }) {
                   }))
                 }
               />
-              <div>
+              <div className={styles.buttonWrapper}>
                 <button
                   type="submit"
                   className="primary small"

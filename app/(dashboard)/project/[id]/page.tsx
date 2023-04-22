@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 import styles from "./page.module.scss";
 import Card from "@/components/UI/Card";
-import TaskList from "@/components/TaskList";
+import TaskTable from "@/components/TaskTable";
 import Link from "next/link";
 import AddButton from "@/components/AddButton";
 import EditButton from "@/components/EditButton";
@@ -69,7 +69,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <div className={styles.titleWrapper}>
               <h1>{project.name}</h1>
               {/* @ts-expect-error */}
-              <EditButton project={project} />
+              <EditButton type={project} />
             </div>
             <div className={styles.buttonWrapper}>
               <AddButton type="task" id={project.id!} />
@@ -83,7 +83,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         </div>
         <div className={styles.taskList}>
           {tasks && tasks.length ? (
-            <TaskList data={tasks} />
+            <TaskTable data={tasks} />
           ) : (
             <div>No Tasks</div>
           )}

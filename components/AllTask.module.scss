@@ -1,0 +1,72 @@
+@import "/styles/mixins";
+@import "/styles/variables";
+
+.contentWrapper {
+  margin-top: auto;
+  height: 100%;
+  overflow: scroll;
+  width: 100%;
+  @include flexy($algn: center, $dir: column);
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+.hiddenWrapper {
+  display: none;
+  overflow: hidden;
+  @media (min-width: 992px) {
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+  }
+}
+.statusWrapper {
+  width: 100%;
+  margin: 0.5rem 0;
+  @include flexy($just: space-around);
+  button {
+    &.active {
+      background-color: $clr-body;
+      color: $clr-bg;
+    }
+    @media (min-width: 992px) {
+      padding: 0.5rem 1.5rem;
+      &,
+      &.active,
+      &:hover {
+        box-shadow: 0px 2px 3px darken(rgb(219, 219, 219), 4%),
+          1px 4px 6px darken(rgb(238, 240, 236), 2%);
+        background-color: $clr-accent !important;
+        text-shadow: -1px -1px 0 darken($clr-accent, 9.5%);
+        color: $clr-bg;
+        border: 1px solid rgba(#ffffff, 0.9);
+      }
+    }
+  }
+}
+.col {
+  width: 100%;
+  @include flexy($dir: column, $algn: center);
+  .titleWrapper {
+    @include flexy($just: space-between);
+    & > button {
+      color: $clr-body;
+    }
+  }
+  .taskWrapper {
+    width: 100%;
+    height: 100%;
+  }
+  .task {
+    margin: 0.5rem;
+    background: rgba($clr-bg, 0.2);
+    border: 1px solid rgba(#ffffff, 0.7);
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 1px 1px 6px rgba(78, 78, 78, 0.33);
+  }
+  @media (min-width: 992px) {
+    overflow: scroll;
+    height: 100%;
+  }
+}

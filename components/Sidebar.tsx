@@ -9,9 +9,9 @@ const links = [
     path: "/home",
   },
   {
-    label: "Calendar",
-    icon: "Calendar",
-    path: "/calendar",
+    label: "Status",
+    icon: "CheckSquare",
+    path: "/status",
   },
   {
     label: "Profile",

@@ -151,8 +151,11 @@ button {
       background: rgba(255, 255, 255, 0.5);
     }
   }
-  &.text {
+  &.icon {
     background: transparent;
+    &:hover {
+      box-shadow: none;
+    }
   }
 }
 .bold {
@@ -173,13 +176,13 @@ a {
 }
 .icon {
   min-width: 30px;
-  stroke: #9ca3af;
+  stroke: lighten($clr-muted, 10%);
   &:hover {
-    stroke: #7c3aed;
+    stroke: $clr-accent;
     transition: all 0.2s ease-in-out;
   }
   &.active {
-    stroke: #7c3aed;
+    stroke: $clr-accent;
   }
 }
 .glass {

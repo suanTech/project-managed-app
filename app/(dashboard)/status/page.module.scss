@@ -1,0 +1,26 @@
+@import '/styles/mixins';
+@import '/styles/variables';
+
+.container {
+  height: 105%;
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  span {
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+    button:hover {
+      color: $clr-accent;
+    }
+  }
+}
+.innerContainer {
+  @include flexy($dir: column, $algn: center);
+  height: 95%;
+  min-height: fit-content;
+  overflow: hidden;
+  position: relative;
+}

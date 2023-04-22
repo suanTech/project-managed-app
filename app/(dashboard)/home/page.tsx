@@ -1,4 +1,4 @@
-import CreateNew from "@/components/AddButton";
+import AddButton from "@/components/AddButton";
 import Greetings from "@/components/Greetings";
 import ProjectCard from "@/components/ProjectCard";
 import TaskCard from "@/components/TaskCard";
@@ -43,7 +43,7 @@ export default async function Home() {
         </div>
         <div className={styles.projectWrapper}>
           <div className={styles.newProject}>
-            <CreateNew type="project" />
+            <AddButton type="project" />
           </div>
           <ProjectContainer>
             {projects.map((project) => (

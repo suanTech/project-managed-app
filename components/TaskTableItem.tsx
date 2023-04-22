@@ -2,9 +2,9 @@
 
 import { delay, formatDate } from "@/lib/helper";
 import { Fragment, useContext, useState } from "react";
-import styles from "./TaskItem.module.scss";
+import styles from "./TaskTableItem.module.scss";
 import { deleteTask, updateTask } from "@/lib/api";
-import { TaskProps } from "./TaskList";
+import { TaskProps } from "./TaskTable";
 import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/(dashboard)/layout";

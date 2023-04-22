@@ -12,7 +12,7 @@ export default function Modal({modalOpen, closeModal, className, children}: Moda
     <div className={`${styles.containerDiv} ${modalOpen && styles.open}`}>
       <div className={`${modalOpen && styles.open} ${styles.modalDiv} ${className}`}>
         <span className={styles.span}>
-          <button className="text small" onClick={closeModal}>
+          <button className="icon small" onClick={closeModal}>
             x
           </button>
         </span>
