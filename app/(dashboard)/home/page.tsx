@@ -26,7 +26,7 @@ const getData = async () => {
         where: {
           deletedAt: null,
         },
-      }
+      },
     },
   });
   return projects;
@@ -45,7 +45,15 @@ export default async function Home() {
           <div className={styles.newProject}>
             <AddButton type="project" />
           </div>
-          <ProjectContainer data={projects} />
+          <ProjectContainer>
+            {projects.map((project) => (
+              <div className={styles.project} key={project.id}>
+                <Link href={`/project/${project.id}`}>
+                  <ProjectCard project={project} />
+                </Link>
+              </div>
+            ))}
+          </ProjectContainer>
         </div>
         <div className={styles.taskWrapper}>
           <div className={styles.task}>

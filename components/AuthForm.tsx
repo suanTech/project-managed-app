@@ -49,14 +49,14 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
       <div className={styles.formWrapper}>
         <div>
           <h1>{content.header}</h1>
-          <p className="small">{content.subheader}</p>
+          <p>{content.subheader}</p>
           {error.length > 0 && <p className="small warning">{error}</p>}
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           {mode === "register" && (
             <div className={styles.nameField}>
               <div className={styles.nameWrapper}>
-                <p className={`${styles.inputLabel} small`}>First Name</p>
+                <p className={styles.inputLabel}>First Name</p>
                 <input
                   required
                   placeholder="First Name"
@@ -71,7 +71,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                 />
               </div>
               <div className={styles.nameWrapper}>
-                <p className={`${styles.inputLabel} small`}>Last Name</p>
+                <p className={styles.inputLabel}>Last Name</p>
                 <input
                   required
                   placeholder="Last Name"
@@ -88,7 +88,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             </div>
           )}
           <div className={styles.fieldWrapper}>
-            <p className={`${styles.inputLabel} small`}>Email</p>
+            <p className={styles.inputLabel}>Email</p>
             <input
               required
               type="email"
@@ -101,7 +101,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
             />
           </div>
           <div className={styles.fieldWrapper}>
-            <p className={`${styles.inputLabel} small`}>Password</p>
+            <p className={styles.inputLabel}>Password</p>
             <input
               required
               type="password"
@@ -115,7 +115,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           </div>
           <div className={styles.linkWrapper}>
             <div>
-              <p className="bold small">
+              <p className="bold">
                 <Link href={content.linkUrl}>{content.linkText}</Link>
               </p>
             </div>

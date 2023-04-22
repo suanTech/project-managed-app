@@ -1,11 +1,8 @@
 import AllTask from "@/components/AllTask";
-import GreetingsSkeleton from "@/components/skeletons/GreetingsSkeleton";
 import Card from "@/components/UI/Card";
-import { Icon } from "@/components/UI/Icon";
 import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { cookies } from "next/headers";
-import { Suspense } from "react";
 import styles from "./page.module.scss";
 
 const getData = async () => {
