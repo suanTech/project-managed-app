@@ -130,11 +130,11 @@ button {
     box-shadow: 1px 1px 5px rgba(148, 148, 148, 0.4);
   }
   &.small {
-    padding: 0.35rem 0.75rem;
+    @include button-size(small);
     @include font-size($bodyS-font-sizes);
   }
   &.medium {
-    padding: 0.5rem 1rem;
+    @include button-size(medium);
     @include font-size($bodyS-font-sizes);
   }
   &.primary {
@@ -144,12 +144,7 @@ button {
     }
   }
   &.secondary {
-    background: transparent;
-    color: black;
-    border: 2px solid #414141;
-    &:hover {
-      background: rgba(255, 255, 255, 0.5);
-    }
+    @include secondary-btn;
   }
   &.icon {
     background: transparent;

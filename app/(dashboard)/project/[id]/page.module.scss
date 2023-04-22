@@ -11,18 +11,12 @@
     height: 92%;
     position: relative;
     overflow: hidden;
-    & + div {
-      height: 18%;
-    }
   }
   @media (min-width: 590px) {
     & > div {
       height: 90.5%;
       max-height: 700px;
       padding-top: 2.5rem;
-      & + div {
-        padding-top: 1rem;
-      }
     }
   }
 }
@@ -51,7 +45,7 @@
   .titleWrapper {
     @include flexy($dir: row, $algn: bottom);
     button {
-      margin-left: .5rem;
+      margin-left: 0.5rem;
     }
     div {
       z-index: 6;

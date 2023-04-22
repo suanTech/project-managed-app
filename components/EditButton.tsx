@@ -132,14 +132,14 @@ export default function EditButton({
               <div className={styles.buttonWrapper}>
                 <button
                   type="submit"
-                  className="primary small"
+                  className="primary medium"
                   name="update"
                   onClick={(e) => handleSubmit(e)}
                 >
                   Update
                 </button>
                 <button
-                  className="primary-confirm small"
+                  className="primary-confirm medium"
                   onClick={() => setIsDeleting(true)}
                 >
                   Delete

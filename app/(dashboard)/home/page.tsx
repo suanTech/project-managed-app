@@ -45,15 +45,7 @@ export default async function Home() {
           <div className={styles.newProject}>
             <AddButton type="project" />
           </div>
-          <ProjectContainer>
-            {projects.map((project) => (
-              <div className={styles.project} key={project.id}>
-                <Link href={`/project/${project.id}`}>
-                  <ProjectCard project={project} />
-                </Link>
-              </div>
-            ))}
-          </ProjectContainer>
+          <ProjectContainer data={projects} />
         </div>
         <div className={styles.taskWrapper}>
           <div className={styles.task}>

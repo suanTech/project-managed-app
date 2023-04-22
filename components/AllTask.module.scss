@@ -25,21 +25,15 @@
   margin: 0.5rem 0;
   @include flexy($just: space-around);
   button {
+    @include secondary-btn;
     &.active {
       background-color: $clr-body;
       color: $clr-bg;
     }
     @media (min-width: 992px) {
       padding: 0.5rem 1.5rem;
-      &,
-      &.active,
-      &:hover {
-        box-shadow: 0px 2px 3px darken(rgb(219, 219, 219), 4%),
-          1px 4px 6px darken(rgb(238, 240, 236), 2%);
-        background-color: $clr-accent !important;
-        text-shadow: -1px -1px 0 darken($clr-accent, 9.5%);
-        color: $clr-bg;
-        border: 1px solid rgba(#ffffff, 0.9);
+      &, &.active {
+        @include primary-btn($bg: $clr-accent, $text: $clr-bg);
       }
     }
   }
