@@ -2,6 +2,7 @@ import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
+// const file = /\((?!api\|\_next\/static\|\_next\/image\|favicon\.ico)\.*\)$/
 
 const validateJWT = async (jwt: string) => {
   const { payload } = await jwtVerify(
@@ -24,6 +25,7 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
   }
   const jwt = req.cookies.get(process.env.COOKIE_NAME);
   if (!jwt) {
+    console.log("Sign in")
     req.nextUrl.pathname = "/signin";
     return NextResponse.redirect(req.nextUrl);
   }

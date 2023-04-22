@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from "./UI/Modal.module.scss";
 import Modal from "./UI/Modal";
 import { delay } from "@/lib/helper";
-import { LoadingContext } from "@/app/(dashboard)/layout";
+import { LoadingContext } from "@/app/Context";
 
 const projectContent = {
   name: "New Project",

@@ -28,9 +28,6 @@ const links = [
 export default function Sidebar() {
   return (
     <Card className="sidebar">
-      <div>
-        <h1>Logo</h1>
-      </div>
       {links.map((link) => (
         <SidebarLink link={link} key={link.label} />
       ))}

@@ -9,10 +9,6 @@ import Link from "next/link";
 import styles from "./page.module.scss";
 import ProjectContainer from "./ProjectContainer";
 
-export const metadata = {
-  title: "Home",
-  description: "Homepage",
-};
 
 const getData = async () => {
   const user = await getUserFromCookie(cookies());

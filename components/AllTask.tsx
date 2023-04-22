@@ -48,17 +48,13 @@ export default function AllTask({ tasks }: { tasks: TaskWithProject[] }) {
       </div>
       <div className={styles.statusWrapper}>
         <button
-          className={`small ${
-            activeButton === 1 ? styles.active : ""
-          }`}
+          className={`small ${activeButton === 1 ? styles.active : ""}`}
           onClick={() => handleClick(1)}
         >
           To Do
         </button>
         <button
-          className={`small ${
-            activeButton === 2 ? styles.active : ""
-          }`}
+          className={`small ${activeButton === 2 ? styles.active : ""}`}
           onClick={() => handleClick(2)}
         >
           Doing

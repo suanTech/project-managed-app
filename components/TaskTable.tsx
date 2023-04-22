@@ -3,8 +3,8 @@ import { Task } from "@prisma/client";
 import styles from "./TaskTableItem.module.scss";
 import TaskItem from "./TaskTableItem";
 import { useContext } from "react";
-import { LoadingContext } from "@/app/(dashboard)/layout";
 import Spinner from "./UI/Spinner";
+import { LoadingContext } from "@/app/Context";
 export type TaskProps = Omit<Task, "due" | "createdAt" | "updatedAt" | "deletedAt"> & {
   due: string | undefined;
   createdAt: string | undefined;

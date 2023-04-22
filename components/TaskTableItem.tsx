@@ -7,7 +7,7 @@ import { deleteTask, updateTask } from "@/lib/api";
 import { TaskProps } from "./TaskTable";
 import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
-import { LoadingContext } from "@/app/(dashboard)/layout";
+import { LoadingContext } from "@/app/Context";
 
 interface ItemProps {
   task: TaskProps;

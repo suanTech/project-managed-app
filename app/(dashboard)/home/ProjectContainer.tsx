@@ -1,11 +1,8 @@
 "use client";
 
-import ProjectCard, { ProjectWithTasks } from "@/components/ProjectCard";
+import { LoadingContext } from "@/app/Context";
 import Spinner from "@/components/UI/Spinner";
-import Link from "next/link";
 import React, { useContext } from "react";
-import { LoadingContext } from "../layout";
-import styles from "./page.module.scss";
 
 export default function ProjectContainer({
   children

@@ -33,11 +33,14 @@ export const validateJWT = async (jwt: string):Promise<any> => {
 
 export const getUserFromCookie = async (cookies: RequestCookies | ReadonlyRequestCookies) => {
   const jwt = cookies.get(process.env.COOKIE_NAME)
-  const {id} = await validateJWT(jwt!.value);
-  const user = await db.user.findUnique({
-    where: {
-      id: id as string
-    },
-  })
-  return user;
+  if(!jwt) {throw new Error("no jwt")}
+  else {
+    const {id} = await validateJWT(jwt.value);
+    const user = await db.user.findUnique({
+      where: {
+        id: id as string
+      },
+    })
+    return user;
+  } 
 }

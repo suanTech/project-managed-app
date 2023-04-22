@@ -17,7 +17,7 @@ export default async function handler(
           description: req.body.task.description,
           due: new Date(req.body.task.due),
           status: req.body.task.status,
-          deleted: req.body.task.deleted
+          deletedAt: req.body.task.deletedAt
         },
       });
       res.status(200).json(result);

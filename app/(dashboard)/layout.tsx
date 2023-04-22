@@ -1,38 +1,33 @@
-"use client";
-
 import "@/styles/globals.scss";
 import { Overpass } from "next/font/google";
 import GlassPane from "@/components/UI/GlassPane";
 import Sidebar from "@/components/Sidebar";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import LoadingContextProvider from "../Context";
 
-const overpass = Overpass({
-  subsets: ["latin"],
-});
-type ContextProps = {
-  isLoading: boolean;
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
+export const metadata = {
+  title: "Home",
+  description: "Homepage",
+  icons: {
+    icon: {url: "/icon.png", type: "image/png" }
+  }
 };
-
-export const LoadingContext = createContext<ContextProps>({
-  isLoading: false,
-  setIsLoading: () => {},
+const fontFace = Overpass({
+  subsets: ["latin"],
 });
 export default function DashboardRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isLoading, setIsLoading] = useState(false);
   return (
-    <html lang="en" className={`${overpass.className} rainbow-mesh`}>
-      <body>
+    <html lang="en" className="rainbow-mesh">
+      <body className={fontFace.className}>
         <GlassPane className="container">
           <Sidebar />
           <main className="dashboard">
-            <LoadingContext.Provider value={{ isLoading, setIsLoading }}>
+            <LoadingContextProvider>
               {children}
-            </LoadingContext.Provider>
+            </LoadingContextProvider>
           </main>
         </GlassPane>
       </body>
