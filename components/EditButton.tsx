@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import { Icon } from "./UI/Icon";
 import Modal from "./UI/Modal";
 import { useRouter } from "next/navigation";
-import { deleteProject, updateProject } from "@/lib/api";
+import {
+  deleteProject,
+  deleteTask,
+  updateProject,
+  updateTask,
+} from "@/lib/api";
 import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
 import { Project } from "@prisma/client";
@@ -26,7 +31,11 @@ export type ProjectProps = Omit<
   };
 };
 
-export default function EditButton({ type }: { type: ProjectProps | TaskProps }) {
+export default function EditButton({
+  type,
+}: {
+  type: ProjectProps | TaskProps;
+}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [values, setValues] = useState({
@@ -39,7 +48,11 @@ export default function EditButton({ type }: { type: ProjectProps | TaskProps })
     setModalOpen(false);
     if ((e.target as HTMLButtonElement).name === "update") {
       try {
-        await updateProject(values, type.id);
+        if (type.type === "project") {
+          await updateProject(values, type.id);
+        } else {
+          await updateTask(values, type.id);
+        }
       } catch (err) {
         console.log(err);
       } finally {
@@ -47,27 +60,36 @@ export default function EditButton({ type }: { type: ProjectProps | TaskProps })
         delay(2000);
       }
     } else if ((e.target as HTMLButtonElement).name === "delete") {
-      try {
-        await deleteProject(type.id);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        router.replace("/home");
-        delay(2000);
-        console.log(values);
+      if (type.type === "project") {
+        try {
+          await deleteProject(type.id);
+        } catch (err) {
+          console.log(err);
+        } finally {
+          router.replace("/home");
+          delay(2000);
+          console.log(values);
+        }
+      } else {
+        try {
+          await deleteTask(type.id);
+        } catch (err) {
+          console.log(err);
+        } finally {
+          router.refresh();
+          delay(2000);
+          console.log(values);
+        }
       }
     }
   };
-  const content = type.type === "project" ? "project" : "task"
+  const content = type.type === "project" ? "project" : "task";
   return (
     <>
       <button className="warning icon" onClick={() => setModalOpen(true)}>
         <Icon name="Settings" size="16" />
       </button>
-      <Modal
-        modalOpen={modalOpen}
-        closeModal={() => setModalOpen(false)}
-      >
+      <Modal modalOpen={modalOpen} closeModal={() => setModalOpen(false)}>
         <form className={styles.form}>
           {isDeleting ? (
             <>

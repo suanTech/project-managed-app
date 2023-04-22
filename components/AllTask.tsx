@@ -5,10 +5,10 @@ import styles from "./AllTask.module.scss";
 import { useState } from "react";
 import { TaskProps } from "./TaskTable";
 import { TaskList } from "./TaskList";
-export interface TaskWithProject extends TaskProps{
+export interface TaskWithProject extends TaskProps {
   project: {
-    name: string
-  }
+    name: string;
+  };
 }
 
 export default function AllTask({ tasks }: { tasks: TaskWithProject[] }) {
@@ -47,36 +47,30 @@ export default function AllTask({ tasks }: { tasks: TaskWithProject[] }) {
         </span>
       </div>
       <div className={styles.statusWrapper}>
-        <a href="#not-started">
-          <button
-            className={`secondary small ${
-              activeButton === 1 ? styles.active : ""
-            }`}
-            onClick={() => handleClick(1)}
-          >
-            To Do
-          </button>
-        </a>
-        <a href="#started">
-          <button
-            className={`secondary small ${
-              activeButton === 2 ? styles.active : ""
-            }`}
-            onClick={() => handleClick(2)}
-          >
-            Doing
-          </button>
-        </a>
-        <a href="#completed">
-          <button
-            className={`secondary small ${
-              activeButton === 3 ? styles.active : ""
-            }`}
-            onClick={() => handleClick(3)}
-          >
-            Done
-          </button>
-        </a>
+        <button
+          className={`secondary small ${
+            activeButton === 1 ? styles.active : ""
+          }`}
+          onClick={() => handleClick(1)}
+        >
+          To Do
+        </button>
+        <button
+          className={`secondary small ${
+            activeButton === 2 ? styles.active : ""
+          }`}
+          onClick={() => handleClick(2)}
+        >
+          Doing
+        </button>
+        <button
+          className={`secondary small ${
+            activeButton === 3 ? styles.active : ""
+          }`}
+          onClick={() => handleClick(3)}
+        >
+          Done
+        </button>
       </div>
       <div className={styles.contentWrapper}>
         {data.map((item) => {
@@ -89,6 +83,7 @@ export default function AllTask({ tasks }: { tasks: TaskWithProject[] }) {
           }
         })}
       </div>
+      {/* for screen size bigger than 992px */}
       <div className={styles.hiddenWrapper}>
         {data.map((item) => (
           <div className={styles.col} key={item.id}>
