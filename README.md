@@ -2,6 +2,9 @@
 
 * live demo <a href="https://tiny-post-app.vercel.app/" target="_blank" rel="noopener">here</a>
 
+To log in as a guest, enter details below:
+email: user@email.com
+password: password
 
 ## Introduction
 
