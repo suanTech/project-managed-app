@@ -14,7 +14,8 @@ html {
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  height: -webkit-fill-available;
+  // overflow: hidden;
   &.rainbow-mesh::before {
     position: fixed;
     content: "";
@@ -60,8 +61,8 @@ body {
   @include flexy($just: center);
   width: 100%;
   height: 100vh;
+  height: -webkit-fill-available;
   padding: 0 1rem;
-  // overflow: hidden;
   color: $clr-body;
   @media (min-width: 590px) {
     padding: 2.5em;
