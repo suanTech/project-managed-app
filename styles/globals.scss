@@ -57,6 +57,7 @@ body {
   width: 100vw;
   height: 100vh;
   padding: 1rem;
+  overflow: hidden;
   color: $clr-body;
   @media (min-width: 590px) {
     padding: 2.5em;
