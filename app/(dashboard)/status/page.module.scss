@@ -3,7 +3,7 @@
 
 .container {
   height: 105%;
-  max-height: 550px;
+  max-height: 460px;
   width: 100%;
   padding: 0 1rem;
   margin-bottom: 1rem;
@@ -24,7 +24,10 @@
 .innerContainer {
   @include flexy($dir: column, $algn: center);
   height: 95%;
-  min-height: fit-content;
+  max-height: 440px;
   overflow: hidden;
   position: relative;
+  @media (min-width: 590px) {
+    max-height: 105%;
+  }
 }

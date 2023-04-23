@@ -5,6 +5,12 @@ const font = Overpass({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  icons: {
+    icon: {url: "/icon.png", type: "image/png" }
+  }
+};
+
 export default function AuthRootLayout({
   children,
 }: {
