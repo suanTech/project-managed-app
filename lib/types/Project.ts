@@ -4,7 +4,7 @@ export type ProjectType = {
   due: string | undefined;
   createdAt: string;
   updatedAt: string;
-  deletedAt: string | undefined;
+  deletedAt: string | null;
   id: string;
   ownerId: string;
   name: string;
@@ -13,7 +13,7 @@ export type ProjectType = {
     due: string | undefined;
     createdAt: string;
     updatedAt: string;
-    deletedAt: string | undefined;
+    deletedAt: string | null;
     id: string;
     ownerId: string;
     projectId: string;

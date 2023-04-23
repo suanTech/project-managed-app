@@ -28,7 +28,7 @@ const getData = async () => {
     due: task?.due?.toJSON(),
     createdAt: task?.createdAt.toJSON(),
     updatedAt: task?.updatedAt.toJSON(),
-    deletedAt: task?.deletedAt?.toJSON(),
+    deletedAt: task?.deletedAt?.toJSON() || null,
   }));
 };
 
