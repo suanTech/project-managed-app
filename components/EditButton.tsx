@@ -12,35 +12,21 @@ import {
 } from "@/lib/api";
 import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
-import { Project } from "@prisma/client";
-import { TaskProps } from "./TaskTable";
-export type ProjectProps = Omit<
-  Project,
-  "due" | "createdAt" | "updatedAt" | "tasks"
-> & {
-  type: "project";
-  due: string | undefined;
-  createdAt: string | undefined;
-  updatedAt: string | undefined;
-  deletedAt: string | null;
-  tasks: {
-    due: string | undefined;
-    createdAt: string | undefined;
-    updatedAt: string | undefined;
-    deletedAt: string | null;
-  };
-};
+import { ProjectType } from "@/lib/types/Project";
+import { TaskType } from "@/lib/types/Task";
 
 export default function EditButton({
+  data,
   type,
 }: {
-  type: ProjectProps | TaskProps;
+  data: ProjectType | TaskType;
+  type: string
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [values, setValues] = useState({
-    name: type.name,
-    description: type.description || "",
+    name: data.name,
+    description: data.description || "",
   });
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,10 +34,10 @@ export default function EditButton({
     setModalOpen(false);
     if ((e.target as HTMLButtonElement).name === "update") {
       try {
-        if (type.type === "project") {
-          await updateProject(values, type.id);
+        if (type=== "project") {
+          await updateProject(values, data.id);
         } else {
-          await updateTask(values, type.id);
+          await updateTask(values, data.id);
         }
       } catch (err) {
         console.log(err);
@@ -60,9 +46,9 @@ export default function EditButton({
         delay(2000);
       }
     } else if ((e.target as HTMLButtonElement).name === "delete") {
-      if (type.type === "project") {
+      if (type === "project") {
         try {
-          await deleteProject(type.id);
+          await deleteProject(data.id);
         } catch (err) {
           console.log(err);
         } finally {
@@ -72,7 +58,7 @@ export default function EditButton({
         }
       } else {
         try {
-          await deleteTask(type.id);
+          await deleteTask(data.id);
         } catch (err) {
           console.log(err);
         } finally {
@@ -83,7 +69,7 @@ export default function EditButton({
       }
     }
   };
-  const content = type.type === "project" ? "project" : "task";
+  const content = type === "project" ? "project" : "task";
   return (
     <>
       <button className="warning icon" onClick={() => setModalOpen(true)}>
@@ -109,7 +95,7 @@ export default function EditButton({
             <>
               <h1>Update {content}</h1>
               <input
-                placeholder={type.name}
+                placeholder={data.name}
                 value={values.name}
                 onChange={(e) =>
                   setValues((prev) => ({
@@ -120,7 +106,7 @@ export default function EditButton({
               />
               <input
                 className={styles.description}
-                placeholder={type.description || "enter description"}
+                placeholder={data.description || "enter description"}
                 value={values.description}
                 onChange={(e) =>
                   setValues((prev) => ({

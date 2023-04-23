@@ -1,25 +1,12 @@
 import { formatDate } from "@/lib/helper";
-import { Prisma } from "@prisma/client";
 import Card from "./UI/Card";
 import styles from "./ProjectCard.module.scss";
-
-const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
-  include: {
-    tasks: {
-      where: {
-        deletedAt: null,
-      },
-    },
-  },
-});
-export type ProjectWithTasks = Prisma.ProjectGetPayload<
-  typeof projectWithTasks
->;
+import { ProjectType } from "@/lib/types/Project";
 
 export default function ProjectCard({
   project,
 }: {
-  project: ProjectWithTasks;
+  project: ProjectType;
 }) {
   const completeCount = project.tasks.filter(
     (task) => task.status === "COMPLETED" && task.deletedAt === null

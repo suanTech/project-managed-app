@@ -3,15 +3,10 @@
 import { Icon } from "./UI/Icon";
 import styles from "./AllTask.module.scss";
 import { useState } from "react";
-import { TaskProps } from "./TaskTable";
 import { TaskList } from "./TaskList";
-export interface TaskWithProject extends TaskProps {
-  project: {
-    name: string;
-  };
-}
+import { TaskTypeWithProject } from "@/lib/types/Task";
 
-export default function AllTask({ tasks }: { tasks: TaskWithProject[] }) {
+export default function AllTask({ tasks }: { tasks: TaskTypeWithProject[] }) {
   const [activeButton, setActiveButton] = useState(1);
   const [activeListId, setActiveListId] = useState("not-started");
   const handleClick = (buttonId: number) => {

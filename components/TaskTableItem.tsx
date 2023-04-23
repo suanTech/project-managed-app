@@ -4,16 +4,14 @@ import { delay, formatDate } from "@/lib/helper";
 import { Fragment, useContext, useState } from "react";
 import styles from "./TaskTableItem.module.scss";
 import { deleteTask, updateTask } from "@/lib/api";
-import { TaskProps } from "./TaskTable";
 import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/Context";
+import { TaskType } from "@/lib/types/Task";
 
-interface ItemProps {
-  task: TaskProps;
-}
 
-export default function TaskItem({ task }: ItemProps) {
+
+export default function TaskTableItem({ task }: {task: TaskType}) {
   const [values, setValues] = useState({
     name: task.name,
     description: task.description,
@@ -89,7 +87,7 @@ export default function TaskItem({ task }: ItemProps) {
               <select
                 value={values.status}
                 onChange={(e) =>
-                  setValues((prev) => ({ ...prev, status: e.target.value }))
+                  setValues((prev) => ({ ...prev, status: e.target.value as typeof prev.status }))
                 }
               >
                 <option value="NOT_STARTED">NOT_STARTED</option>

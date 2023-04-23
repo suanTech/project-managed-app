@@ -1,20 +1,13 @@
 "use client";
-import { Task } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import styles from "./TaskTableItem.module.scss";
-import TaskItem from "./TaskTableItem";
 import { useContext } from "react";
 import Spinner from "./UI/Spinner";
 import { LoadingContext } from "@/app/Context";
-export type TaskProps = Omit<Task, "due" | "createdAt" | "updatedAt" | "deletedAt"> & {
-  due: string | undefined;
-  createdAt: string | undefined;
-  updatedAt: string | undefined;
-  deletedAt: string | undefined;
-} & {
-  type: "task"
-}
+import TaskTableItem from "./TaskTableItem";
+import { TaskType } from "@/lib/types/Task";
 
-export default function TaskTable({ data }: { data: TaskProps[] }) {
+export default function TaskTable({ data }: { data: TaskType[] }) {
   const { isLoading } = useContext(LoadingContext);
   return (
     <>
@@ -34,7 +27,9 @@ export default function TaskTable({ data }: { data: TaskProps[] }) {
               </td>
             </tr>
           ) : (
-            data.filter(task => !task.deletedAt).map((task) => <TaskItem key={task.id} task={task} />)
+            data
+              .filter((task) => !task.deletedAt)
+              .map((task) => <TaskTableItem key={task.id} task={task} />)
           )}
         </tbody>
       </table>
