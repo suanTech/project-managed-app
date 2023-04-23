@@ -34,7 +34,7 @@ A full stack project management app built with Next.js, Typescript and Sass.
 <img src="https://imgur.com/WmVKOXb.jpg" width="350" height="auto">
 
 ## 🛠️ Tech Stack
-![techStack](https://imgur.com/bULrrqm.png)
+![techStack](./public/techstack.svg)
 
 ## Dependencies
 * Prisma
