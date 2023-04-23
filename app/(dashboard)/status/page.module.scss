@@ -3,6 +3,7 @@
 
 .container {
   height: 105%;
+  max-height: 550px;
   width: 100%;
   padding: 0 1rem;
   margin-bottom: 1rem;
@@ -15,6 +16,9 @@
     button:hover {
       color: $clr-accent;
     }
+  }
+  @media (min-width: 590px) {
+    max-height: 105%;
   }
 }
 .innerContainer {

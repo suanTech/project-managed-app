@@ -54,6 +54,7 @@ html {
 }
 body {
   margin: auto;
+  @include flexy($algn: center);
   width: 100vw;
   height: 100vh;
   padding: 1rem;
