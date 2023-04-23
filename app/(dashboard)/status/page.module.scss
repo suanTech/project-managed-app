@@ -23,7 +23,7 @@
 .innerContainer {
   @include flexy($dir: column, $algn: center);
   height: 95%;
-  max-height: 480px;
+  max-height: 460px;
   overflow: hidden;
   position: relative;
   @media (min-width: 590px) {
