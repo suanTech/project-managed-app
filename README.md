@@ -31,7 +31,7 @@ A full stack project management app built with Next.js, Typescript and Sass.
 ![schema](./public/schema-diagram.png)
 
 ## 📸 Screenshots
-<img src="https://imgur.com/hLy3Pad.jpg" width="350" height="auto">
+<img src="https://imgur.com/WmVKOXb.jpg" width="350" height="auto">
 
 ## 🛠️ Tech Stack
 ![techStack](https://imgur.com/bULrrqm.png)
