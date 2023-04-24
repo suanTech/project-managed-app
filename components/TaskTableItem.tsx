@@ -169,7 +169,7 @@ export default function TaskTableItem({ task }: {task: TaskType}) {
           </div>
         </td>
       </tr>
-      <tr>
+      <tr className={styles.modal}>
         <td>
           <Modal
             className="small-card"
