@@ -26,11 +26,11 @@ const getData = async () => {
   });
   return projects.map((project) => ({
     ...project,
-    due: project?.due?.toJSON(),
-    createdAt: project?.createdAt.toJSON(),
-    updatedAt: project?.updatedAt.toJSON(),
-    deletedAt: project?.deletedAt?.toJSON() || null,
-    tasks: project?.tasks.map((task) => {
+    due: project.due?.toJSON(),
+    createdAt: project.createdAt.toJSON(),
+    updatedAt: project.updatedAt.toJSON(),
+    deletedAt: project.deletedAt?.toJSON() || null,
+    tasks: project.tasks.map((task) => {
       return {
         ...task,
         due: task.due?.toJSON(),
