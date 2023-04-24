@@ -5,7 +5,10 @@ const nextConfig = {
     serverComponentsExternalPackages: ["bcrypt"],
     swcPlugins: [["next-superjson-plugin", {}]],
   },
-  exclude: /\/*\/middleware\?.*/,
+  swcMinify: true,
+  swcLoaderOptions: {
+    exclude: /middleware\?.*/,
+  }
 };
 
 module.exports = nextConfig;
