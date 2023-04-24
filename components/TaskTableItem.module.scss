@@ -6,11 +6,9 @@
   text-align: left;
   border-spacing: 0;
   thead {
-    tr {
-      position: sticky;
-      z-index: 1;
-      top: 0;
-    }
+    position: sticky;
+    z-index: 1;
+    top: 0;
     th {
       padding: 0.5rem;
       background-color: rgba(#e1efe9, 0.85);

@@ -23,7 +23,6 @@
 .modalDiv {
   @include flexy($algn: center, $just: center, $dir: column);
   background-color: $clr-bg;
-  z-index: 10;
   gap: 1.5em;
   width: 70%;
   height: 60%;
@@ -44,6 +43,7 @@
     padding: 3rem 2.8rem;
   }
   &.open {
+    z-index: 3;
     opacity: 1;
     top: 50%;
     left: 50%;
