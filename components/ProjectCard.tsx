@@ -1,16 +1,29 @@
 import { formatDate } from "@/lib/helper";
 import Card from "./UI/Card";
 import styles from "./ProjectCard.module.scss";
-import { ProjectType } from "@/lib/types/Project";
-
+import { TASK_STATUS } from "@prisma/client";
+type ProjectPropTypes = {
+  createdAt: string 
+  deletedAt: string | null;
+  id?: string | undefined;
+  name?: string | undefined;
+  description?: string | undefined | null;
+  tasks: {
+        deletedAt: string | null;
+        projectId: string 
+        status: TASK_STATUS;
+        name: string 
+        description: string 
+      }[]
+};
 export default function ProjectCard({
   project,
 }: {
-  project: ProjectType;
+  project: ProjectPropTypes;
 }) {
-  const completeCount = project.tasks.filter(
+  const completeCount = project.tasks ? project.tasks.filter(
     (task) => task.status === "COMPLETED" && task.deletedAt === null
-  ).length;
+  ).length : 0;
   const progress = Math.ceil(
     (completeCount /
       project.tasks.filter((task) => task.deletedAt === null).length) *

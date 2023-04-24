@@ -68,7 +68,6 @@ export default async function ProjectPage({ params }: { params: Params }) {
           <div className={styles.header}>
             <div className={styles.titleWrapper}>
               <h1>{project.name}</h1>
-              {/* @ts-expect-error */}
               <EditButton type="project" data={project} />
             </div>
             <div className={styles.buttonWrapper}>

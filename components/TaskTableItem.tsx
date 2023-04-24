@@ -7,10 +7,10 @@ import { deleteTask, updateTask } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/Context";
-import { TaskType } from "@/lib/types/Task";
 import Button from "./UI/Button";
+import { TaskPropTypes } from "./TaskTable";
 
-export default function TaskTableItem({ task }: { task: TaskType }) {
+export default function TaskTableItem({ task }: { task: TaskPropTypes }) {
   const [values, setValues] = useState({
     name: task.name,
     description: task.description,

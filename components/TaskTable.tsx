@@ -1,13 +1,25 @@
 "use client";
-import { Prisma } from "@prisma/client";
+import { Prisma, TASK_STATUS } from "@prisma/client";
 import styles from "./TaskTableItem.module.scss";
 import { useContext } from "react";
 import Spinner from "./UI/Spinner";
 import { LoadingContext } from "@/app/Context";
 import TaskTableItem from "./TaskTableItem";
-import { TaskType } from "@/lib/types/Task";
 
-export default function TaskTable({ data }: { data: TaskType[] }) {
+export interface TaskPropTypes {
+  due: string | undefined;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+  id: string;
+  ownerId: string;
+  projectId: string;
+  status: TASK_STATUS;
+  name: string;
+  description: string;
+}[]
+
+export default function TaskTable({ data }: { data: TaskPropTypes[] }) {
   const { isLoading } = useContext(LoadingContext);
   return (
     <>

@@ -26,7 +26,7 @@ export default function EditButton({
   const [modalOpen, setModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [values, setValues] = useState({
-    name: data.name,
+    name: data.name!,
     description: data.description || "",
   });
   const router = useRouter();
@@ -36,9 +36,9 @@ export default function EditButton({
     if ((e.target as HTMLButtonElement).name === "update") {
       try {
         if (type === "project") {
-          await updateProject(values, data.id);
+          await updateProject(values, data.id!);
         } else {
-          await updateTask(values, data.id);
+          await updateTask(values, data.id!);
         }
       } catch (err) {
         console.log(err);
@@ -49,7 +49,7 @@ export default function EditButton({
     } else if ((e.target as HTMLButtonElement).name === "delete") {
       if (type === "project") {
         try {
-          await deleteProject(data.id);
+          await deleteProject(data.id!);
         } catch (err) {
           console.log(err);
         } finally {
@@ -59,7 +59,7 @@ export default function EditButton({
         }
       } else {
         try {
-          await deleteTask(data.id);
+          await deleteTask(data.id!);
         } catch (err) {
           console.log(err);
         } finally {

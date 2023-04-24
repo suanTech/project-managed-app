@@ -48,6 +48,7 @@ export default async function Home() {
     <div className={styles.container}>
       <div className={styles.innerContainer}>
         <div className={styles.greetings}>
+          {/* @ts-expect-error */}
           <Greetings />
         </div>
         <div className={styles.projectWrapper}>
