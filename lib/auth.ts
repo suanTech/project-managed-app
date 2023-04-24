@@ -41,6 +41,6 @@ export const getUserFromCookie = async (cookies: RequestCookies | ReadonlyReques
         id: id as string
       },
     })
-    return user
+    return user;
   } 
 }

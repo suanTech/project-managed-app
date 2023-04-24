@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ['bcrypt'],
+    swcPlugins: [["next-superjson-plugin", {}]],
   },
 }
 
