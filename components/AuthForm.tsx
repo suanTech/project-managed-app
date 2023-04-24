@@ -6,6 +6,7 @@ import Card from "./UI/Card";
 import { useState } from "react";
 import styles from "./AuthForm.module.scss";
 import Link from "next/link";
+import Button from "./UI/Button";
 
 const registerContent = {
   linkUrl: "/signin",
@@ -120,9 +121,9 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
               </p>
             </div>
             <div>
-              <button type="submit" className="secondary small">
+              <Button type="submit" btnType="secondary" size="small">
                 {content.buttonText}
-              </button>
+              </Button>
             </div>
           </div>
         </form>

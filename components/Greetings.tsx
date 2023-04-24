@@ -3,6 +3,7 @@ import { getUserFromCookie } from "@/lib/auth";
 import { cookies } from "next/headers";
 import Card from "./UI/Card";
 import Link from "next/link";
+import Button from "./UI/Button";
 
 const getUser = async () => {
   await delay(1000);
@@ -21,9 +22,9 @@ const Greetings = async () => {
         </div>
         <div style={{ marginTop: "1rem" }}>
           <Link href="/status">
-            <button className="primary medium">
+            <Button size="medium">
               <p className="small">Check my tasks</p>
-            </button>
+            </Button>
           </Link>
         </div>
       </div>

@@ -7,6 +7,7 @@ import styles from "./UI/Modal.module.scss";
 import Modal from "./UI/Modal";
 import { delay } from "@/lib/helper";
 import { LoadingContext } from "@/app/Context";
+import Button from "./UI/Button";
 
 const projectContent = {
   name: "New Project",
@@ -57,9 +58,9 @@ export default function AddButton({
   const content = type === "project" ? projectContent : taskContent;
   return (
     <>
-      <button className="secondary small" onClick={() => setModalOpen(true)}>
+      <Button btnType="secondary" size="small" onClick={() => setModalOpen(true)}>
         + Add a {content.buttonText}
-      </button>
+      </Button>
       <Modal modalOpen={modalOpen} closeModal={() => setModalOpen(false)}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <h1>{content.name}</h1>
@@ -100,9 +101,9 @@ export default function AddButton({
               />
             </div>
           )}
-          <button className="primary medium" type="submit">
+          <Button btnType="primary" type="submit">
             Create
-          </button>
+          </Button>
         </form>
       </Modal>
     </>

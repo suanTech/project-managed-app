@@ -25,13 +25,13 @@
   align-items: $algn;
   flex-grow: $grow;
 }
-@mixin button-size($size) {
-  @if ($size == "small") {
-    padding: 0.35rem 0.75rem;
-  } @else if($size == "medium") {
-    padding: 0.5rem 1rem;
-  }
-}
+// @mixin button-size($size) {
+//   @if ($size == "small") {
+//     padding: 0.35rem 0.75rem;
+//   } @else if($size == "medium") {
+//     padding: 0.5rem 1rem;
+//   }
+// }
 @mixin primary-btn($bg: null, $text: null) {
   background: lighten($bg, 3%);
   box-shadow: 0px 2px 0 darken(rgb(232, 237, 232), 4%),
@@ -54,5 +54,6 @@
   border: 2px solid #414141;
   &:hover {
     background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 1px 5px rgba(148, 148, 148, 0.4);
   }
 }

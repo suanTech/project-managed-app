@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 import styles from './Modal.module.scss';
 
 interface ModalProps {
@@ -12,9 +13,9 @@ export default function Modal({modalOpen, closeModal, className, children}: Moda
     <div className={`${styles.containerDiv} ${modalOpen && styles.open}`}>
       <div className={`${modalOpen && styles.open} ${styles.modalDiv} ${className}`}>
         <span className={styles.span}>
-          <button className="icon small" onClick={closeModal}>
+          <Button btnType="icon" size="small" onClick={closeModal}>
             x
-          </button>
+          </Button>
         </span>
         {children}
       </div>

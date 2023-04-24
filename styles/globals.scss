@@ -126,40 +126,6 @@ input {
     }
   }
 }
-button {
-  cursor: pointer;
-  font-weight: 400;
-  border-radius: 1.2rem;
-  border: none;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    animation: bounce 0.6s;
-    box-shadow: 1px 1px 5px rgba(148, 148, 148, 0.4);
-  }
-  &.small {
-    @include button-size(small);
-    @include font-size($bodyS-font-sizes);
-  }
-  &.medium {
-    @include button-size(medium);
-    @include font-size($bodyS-font-sizes);
-  }
-  &.primary {
-    @include primary-btn($clr-accent);
-    &-confirm {
-    @include primary-btn($clr-warning);
-    }
-  }
-  &.secondary {
-    @include secondary-btn;
-  }
-  &.icon {
-    background: transparent;
-    &:hover {
-      box-shadow: none;
-    }
-  }
-}
 .bold {
   font-weight: bold;
 }
@@ -193,11 +159,4 @@ a {
   border: 2px solid rgba(233, 234, 235, 0.4);
   border-radius: 2em;
 }
-@keyframes bounce {
-  50% {
-    transform: translateY(-2px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
+

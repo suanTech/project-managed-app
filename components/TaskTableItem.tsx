@@ -8,10 +8,9 @@ import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/Context";
 import { TaskType } from "@/lib/types/Task";
+import Button from "./UI/Button";
 
-
-
-export default function TaskTableItem({ task }: {task: TaskType}) {
+export default function TaskTableItem({ task }: { task: TaskType }) {
   const [values, setValues] = useState({
     name: task.name,
     description: task.description,
@@ -87,7 +86,10 @@ export default function TaskTableItem({ task }: {task: TaskType}) {
               <select
                 value={values.status}
                 onChange={(e) =>
-                  setValues((prev) => ({ ...prev, status: e.target.value as typeof prev.status }))
+                  setValues((prev) => ({
+                    ...prev,
+                    status: e.target.value as typeof prev.status,
+                  }))
                 }
               >
                 <option value="NOT_STARTED">NOT_STARTED</option>
@@ -147,24 +149,26 @@ export default function TaskTableItem({ task }: {task: TaskType}) {
             )}
 
             <div className={styles.buttonWrapper}>
-              <button
+              <Button
                 type="submit"
-                className="primary small"
+                size="small"
                 name="update"
                 onClick={isEditing ? handleSubmit : toggleEditMode}
               >
                 {isEditing ? "Save Changes" : "Edit Task"}
-              </button>
-              <button
-                className="secondary small"
+              </Button>
+              <Button
+                btnType="secondary"
+                size="small"
                 name="delete"
                 onClick={
                   isEditing
                     ? () => setIsEditing(!isEditing)
-                    : () => setModalOpen(true)}
+                    : () => setModalOpen(true)
+                }
               >
                 {isEditing ? "Cancel" : "Delete task"}
-              </button>
+              </Button>
             </div>
           </div>
         </td>
@@ -179,9 +183,9 @@ export default function TaskTableItem({ task }: {task: TaskType}) {
             <h3 className="warning" style={{ textAlign: "center" }}>
               Are you sure you want to delete this task?
             </h3>
-            <button className="primary-confirm medium" onClick={handleDelete}>
+            <Button btnType="primary-confirm" size="medium" onClick={handleDelete}>
               Delete
-            </button>
+            </Button>
           </Modal>
         </td>
       </tr>

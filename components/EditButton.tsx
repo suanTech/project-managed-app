@@ -14,13 +14,14 @@ import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
 import { ProjectType } from "@/lib/types/Project";
 import { TaskType } from "@/lib/types/Task";
+import Button from "./UI/Button";
 
 export default function EditButton({
   data,
   type,
 }: {
   data: ProjectType | TaskType;
-  type: string
+  type: string;
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -34,7 +35,7 @@ export default function EditButton({
     setModalOpen(false);
     if ((e.target as HTMLButtonElement).name === "update") {
       try {
-        if (type=== "project") {
+        if (type === "project") {
           await updateProject(values, data.id);
         } else {
           await updateTask(values, data.id);
@@ -72,9 +73,13 @@ export default function EditButton({
   const content = type === "project" ? "project" : "task";
   return (
     <>
-      <button className="warning icon" onClick={() => setModalOpen(true)}>
+      <Button
+        btnType="icon-warning"
+        size="small"
+        onClick={() => setModalOpen(true)}
+      >
         <Icon name="Settings" size="16" />
-      </button>
+      </Button>
       <Modal modalOpen={modalOpen} closeModal={() => setModalOpen(false)}>
         <form className={styles.form}>
           {isDeleting ? (
@@ -82,14 +87,15 @@ export default function EditButton({
               <h3 className="warning" style={{ textAlign: "center" }}>
                 Are you sure you want to delete this {content}?
               </h3>
-              <button
+              <Button
                 type="submit"
+                btnType="primary-confirm"
+                size="medium"
                 name="delete"
-                className="primary-confirm medium"
                 onClick={(e) => handleSubmit(e)}
               >
                 Delete
-              </button>
+              </Button>
             </>
           ) : (
             <>
@@ -116,20 +122,21 @@ export default function EditButton({
                 }
               />
               <div className={styles.buttonWrapper}>
-                <button
+                <Button
                   type="submit"
-                  className="primary medium"
+                  size="medium"
                   name="update"
                   onClick={(e) => handleSubmit(e)}
                 >
                   Update
-                </button>
-                <button
-                  className="primary-confirm medium"
+                </Button>
+                <Button
+                  btnType="primary-confirm"
+                  size="medium"
                   onClick={() => setIsDeleting(true)}
                 >
                   Delete
-                </button>
+                </Button>
               </div>
             </>
           )}

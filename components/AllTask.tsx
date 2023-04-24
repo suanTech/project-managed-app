@@ -5,6 +5,7 @@ import styles from "./AllTask.module.scss";
 import { useState } from "react";
 import { TaskList } from "./TaskList";
 import { TaskTypeWithProject } from "@/lib/types/Task";
+import Button from "./UI/Button";
 
 export default function AllTask({ tasks }: { tasks: TaskTypeWithProject[] }) {
   const [activeButton, setActiveButton] = useState(1);
@@ -36,32 +37,36 @@ export default function AllTask({ tasks }: { tasks: TaskTypeWithProject[] }) {
       <div className={styles.titleWrapper}>
         <h2>All Tasks</h2>
         <span>
-          <button className="icon small">
+          <Button btnType="icon" size="small">
             <Icon name="Filter" size={20} />
-          </button>
+          </Button>
         </span>
       </div>
       <div className={styles.statusWrapper}>
-        <button
-          className={`small ${activeButton === 1 ? styles.active : ""}`}
+        <Button
+          btnType="primary-black"
+          size="small"
+          className={activeButton === 1 ? styles.active : ""}
           onClick={() => handleClick(1)}
         >
           To Do
-        </button>
-        <button
-          className={`small ${activeButton === 2 ? styles.active : ""}`}
+        </Button>
+        <Button
+          size="small"
+          btnType="primary-black"
+          className={activeButton === 2 ? styles.active : ""}
           onClick={() => handleClick(2)}
         >
           Doing
-        </button>
-        <button
-          className={`secondary small ${
-            activeButton === 3 ? styles.active : ""
-          }`}
+        </Button>
+        <Button
+          size="small"
+          btnType="primary-black"
+          className={activeButton === 3 ? styles.active : ""}
           onClick={() => handleClick(3)}
         >
           Done
-        </button>
+        </Button>
       </div>
       <div className={styles.contentWrapper}>
         {data.map((item) => {
