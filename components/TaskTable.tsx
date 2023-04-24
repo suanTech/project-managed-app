@@ -34,7 +34,7 @@ export default function TaskTable({ data }: { data: TaskPropTypes[] }) {
         <tbody>
           {isLoading ? (
             <tr>
-              <td>
+              <td colSpan={3}>
                 <Spinner />
               </td>
             </tr>
