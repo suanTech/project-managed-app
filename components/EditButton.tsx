@@ -15,12 +15,13 @@ import styles from "./UI/Modal.module.scss";
 import { ProjectType } from "@/lib/types/Project";
 import { TaskType } from "@/lib/types/Task";
 import Button from "./UI/Button";
+import { Project, Task } from "@prisma/client";
 
 export default function EditButton({
   data,
   type,
 }: {
-  data: ProjectType | TaskType;
+  data: Project | Task;
   type: string;
 }) {
   const [modalOpen, setModalOpen] = useState(false);

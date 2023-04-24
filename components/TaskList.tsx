@@ -3,8 +3,20 @@ import styles from "./AllTask.module.scss";
 import { formatDate } from "@/lib/helper";
 import EditButton from "./EditButton";
 import { TaskTypeWithProject } from "@/lib/types/Task";
+import { Prisma, Task } from "@prisma/client";
 
-export const TaskList = ({ tasks }: { tasks: TaskTypeWithProject[] }) => {
+const tasksWithProject = Prisma.validator<Prisma.TaskArgs>()({
+  include: { project: {
+    select: {
+      name: true
+    }
+  } },
+});
+
+export type TasksWithProject = Prisma.TaskGetPayload<typeof tasksWithProject>;
+
+
+export const TaskList = ({ tasks }: { tasks: TasksWithProject[] }) => {
   return (
     <div className={styles.taskWrapper}>
       {tasks.map((task) => (

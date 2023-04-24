@@ -26,22 +26,7 @@ const getData = async (id: string) => {
       },
     },
   });
-  return {
-    ...project,
-    due: project?.due?.toJSON(),
-    createdAt: project?.createdAt.toJSON(),
-    updatedAt: project?.updatedAt.toJSON(),
-    deletedAt: project?.deletedAt?.toJSON() || null,
-    tasks: project?.tasks.map((task) => {
-      return {
-        ...task,
-        due: task.due?.toJSON(),
-        createdAt: task.createdAt.toJSON(),
-        updatedAt: task.updatedAt.toJSON(),
-        deletedAt: task?.deletedAt?.toJSON() || null
-      };
-    }),
-  };
+  return project;
 };
 export const generateMetadata = async ({
   params,
@@ -51,43 +36,46 @@ export const generateMetadata = async ({
   searchParams: Params;
 }) => {
   const project = await getData(params.id);
-  return { title: project.name, description: project.description };
+  return { title: project?.name, description: project?.description };
 };
+
 export default async function ProjectPage({ params }: { params: Params }) {
   const project = await getData(params.id);
-  const tasks = project.tasks;
-  return (
-    <div className={styles.container}>
-      <Card>
-        <div>
-          <div className={styles.navButton}>
-            <Link href="/home">
-              <p className="small">◂ back to dashboard</p>
-            </Link>
-          </div>
-          <div className={styles.header}>
-            <div className={styles.titleWrapper}>
-              <h1>{project.name}</h1>
-              <EditButton type="project" data={project} />
+  const tasks = project?.tasks;
+  if (project) {
+    return (
+      <div className={styles.container}>
+        <Card>
+          <div>
+            <div className={styles.navButton}>
+              <Link href="/home">
+                <p className="small">◂ back to dashboard</p>
+              </Link>
             </div>
-            <div className={styles.buttonWrapper}>
-              <AddButton type="task" id={project.id!} />
+            <div className={styles.header}>
+              <div className={styles.titleWrapper}>
+                <h1>{project.name}</h1>
+                <EditButton type="project" data={project} />
+              </div>
+              <div className={styles.buttonWrapper}>
+                <AddButton type="task" id={project.id!} />
+              </div>
+            </div>
+            <div className={styles.projectDescription}>
+              <p className="sub">
+                <i>Description: {project.description}</i>
+              </p>
             </div>
           </div>
-          <div className={styles.projectDescription}>
-            <p className="sub">
-              <i>Description: {project.description}</i>
-            </p>
+          <div className={styles.taskList}>
+            {tasks && tasks.length ? (
+              <TaskTable data={tasks} />
+            ) : (
+              <div>No Tasks</div>
+            )}
           </div>
-        </div>
-        <div className={styles.taskList}>
-          {tasks && tasks.length ? (
-            <TaskTable data={tasks} />
-          ) : (
-            <div>No Tasks</div>
-          )}
-        </div>
-      </Card>
-    </div>
-  );
+        </Card>
+      </div>
+    );
+  }
 }

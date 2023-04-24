@@ -23,13 +23,7 @@ const getData = async () => {
       },
     },
   });
-  return tasks.map((task) => ({
-    ...task,
-    due: task?.due?.toJSON(),
-    createdAt: task?.createdAt.toJSON(),
-    updatedAt: task?.updatedAt.toJSON(),
-    deletedAt: task?.deletedAt?.toJSON() || null,
-  }));
+  return tasks;
 };
 
 export default async function StatusPage() {

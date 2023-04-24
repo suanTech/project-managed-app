@@ -1,5 +1,5 @@
 "use client";
-import { Prisma, TASK_STATUS } from "@prisma/client";
+import { Prisma, Task, TASK_STATUS } from "@prisma/client";
 import styles from "./TaskTableItem.module.scss";
 import { useContext } from "react";
 import Spinner from "./UI/Spinner";
@@ -19,7 +19,7 @@ export interface TaskPropTypes {
   description: string;
 }[]
 
-export default function TaskTable({ data }: { data: TaskPropTypes[] }) {
+export default function TaskTable({ data }: { data: Task[] }) {
   const { isLoading } = useContext(LoadingContext);
   return (
     <>

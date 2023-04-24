@@ -1,25 +1,17 @@
 import { formatDate } from "@/lib/helper";
 import Card from "./UI/Card";
 import styles from "./ProjectCard.module.scss";
-import { TASK_STATUS } from "@prisma/client";
-type ProjectPropTypes = {
-  createdAt: string 
-  deletedAt: string | null;
-  id?: string | undefined;
-  name?: string | undefined;
-  description?: string | undefined | null;
-  tasks: {
-        deletedAt: string | null;
-        projectId: string 
-        status: TASK_STATUS;
-        name: string 
-        description: string 
-      }[]
-};
+import { Prisma, Project, TASK_STATUS } from "@prisma/client";
+const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
+  include: { tasks: true },
+});
+
+type ProjectWithTasks = Prisma.ProjectGetPayload<typeof projectWithTasks>;
+
 export default function ProjectCard({
   project,
 }: {
-  project: ProjectPropTypes;
+  project: ProjectWithTasks;
 }) {
   const completeCount = project.tasks ? project.tasks.filter(
     (task) => task.status === "COMPLETED" && task.deletedAt === null

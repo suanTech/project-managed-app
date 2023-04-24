@@ -9,8 +9,9 @@ import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/Context";
 import Button from "./UI/Button";
 import { TaskPropTypes } from "./TaskTable";
+import { Task } from "@prisma/client";
 
-export default function TaskTableItem({ task }: { task: TaskPropTypes }) {
+export default function TaskTableItem({ task }: { task: Task }) {
   const [values, setValues] = useState({
     name: task.name,
     description: task.description,
