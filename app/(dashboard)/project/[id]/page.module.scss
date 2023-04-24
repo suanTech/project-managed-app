@@ -57,7 +57,7 @@
   .buttonWrapper div {
     z-index: 5;
   }
-  @media(min-width: 590px) {
+  @media (min-width: 590px) {
     flex-direction: row;
   }
 }
@@ -65,8 +65,8 @@
   padding: 1rem 0;
 }
 .taskList {
-  position: relative;
   height: 82%;
   overflow: scroll;
-  z-index: 4;
+  // position: relative;
+  // z-index: 4;
 }
