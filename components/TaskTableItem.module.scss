@@ -24,9 +24,7 @@
   }
 }
 .item {
-  position: relative;
   align-items: center;
-  z-index: 0;
   transition: background-color .25s ease-out;
   &:hover {
     background-color: rgba($clr-bg, 0.67);
@@ -78,10 +76,6 @@
       opacity: 1;
       transform: translateY(0px);
       height: 150px;
-    }
-    .buttonWrapper {
-      position: relative;
-      z-index: 100;
     }
   }
 }
