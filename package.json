@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
@@ -35,6 +36,5 @@
     "prisma": "^4.12.0",
     "ts-node": "10.9.1",
     "tsconfig-paths": "^4.2.0"
-  },
-  "postinstall": "prisma generate"
+  }
 }
