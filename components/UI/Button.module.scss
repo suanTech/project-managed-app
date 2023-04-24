@@ -2,7 +2,6 @@
 @import '/styles/variables';
 
 .btn {
-  cursor: pointer;
   border: none;
   font-weight: 400;
   border-radius: 1.2rem;
@@ -36,14 +35,12 @@
   @include font-size($bodyS-font-sizes);
 }
 .icon {
-  // @extend .btn;
   background: transparent;
   border: none;
   &:hover {
     box-shadow: none;
   }
   &-warning {
-    // @extend .btn;
     @extend .icon;
     color: $clr-warning;
   }

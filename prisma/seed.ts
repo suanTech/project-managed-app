@@ -1,4 +1,4 @@
-// import { hashPassword } from "@/lib/auth";
+
 import { hashPassword } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { TASK_STATUS } from "@prisma/client";

@@ -15,7 +15,6 @@ html {
   width: 100%;
   height: 100%;
   height: -webkit-fill-available;
-  // overflow: auto;
   &.rainbow-mesh::before {
     position: fixed;
     content: "";
@@ -109,6 +108,9 @@ p {
   &.small {
     @include font-size($bodyXS-font-sizes);
   }
+}
+button {
+  cursor: pointer;
 }
 input {
   border: 1px solid rgb(159, 155, 159);
