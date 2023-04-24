@@ -31,7 +31,7 @@ export default async function StatusPage() {
   return (
     <div className={styles.container}>
       <Card className={styles.innerContainer}>
-          <AllTask tasks={tasks} />
+          <AllTask tasks={tasks} data-superjson/>
       </Card>
     </div>
   );

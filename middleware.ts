@@ -2,7 +2,6 @@ import { jwtVerify } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
-// const file = /\((?!api\|\_next\/static\|\_next\/image\|favicon\.ico)\.*\)$/
 
 const validateJWT = async (jwt: string) => {
   const { payload } = await jwtVerify(

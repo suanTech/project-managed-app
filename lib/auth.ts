@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import {SignJWT, jwtVerify} from 'jose';
-import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies';
-import { ReadonlyRequestCookies } from 'next/dist/server/app-render';
+import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { db } from './db';
 export const hashPassword = (password:string) => bcrypt.hash(password, 10)
 export const comparePasswords = (plainTextPassword:string, hashedPassword:string) => {
@@ -31,7 +30,7 @@ export const validateJWT = async (jwt: string):Promise<any> => {
   return payload.userData;
 }
 
-export const getUserFromCookie = async (cookies: RequestCookies | ReadonlyRequestCookies) => {
+export const getUserFromCookie = async (cookies: ReadonlyRequestCookies) => {
   const jwt = cookies.get(process.env.COOKIE_NAME)
   if(!jwt) {throw new Error("no jwt")}
   else {

@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import Modal from "./UI/Modal";
 import { LoadingContext } from "@/app/Context";
 import Button from "./UI/Button";
-import { TaskPropTypes } from "./TaskTable";
 import { Task } from "@prisma/client";
 
 export default function TaskTableItem({ task }: { task: Task }) {
@@ -75,10 +74,10 @@ export default function TaskTableItem({ task }: { task: Task }) {
             <input
               className="formInput"
               type="text"
-              value={values.due}
+              value={values.due?.toDateString()}
               onFocus={(e) => (e.target.type = "date")}
               onChange={(e) =>
-                setValues((prev) => ({ ...prev, due: e.target.value }))
+                setValues((prev) => ({ ...prev, due: new Date(e.target.value) }))
               }
             />
           </td>

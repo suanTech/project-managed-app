@@ -4,7 +4,6 @@ import { Icon } from "./UI/Icon";
 import styles from "./AllTask.module.scss";
 import { useState } from "react";
 import { TaskList, TasksWithProject } from "./TaskList";
-import { TaskTypeWithProject } from "@/lib/types/Task";
 import Button from "./UI/Button";
 
 export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {

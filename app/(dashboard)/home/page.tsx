@@ -44,7 +44,7 @@ export default async function Home() {
             {projects.map((project) => (
               <div className={styles.project} key={project.id}>
                 <Link href={`/project/${project.id}`}>
-                  <ProjectCard project={project} />
+                  <ProjectCard project={project}/>
                 </Link>
               </div>
             ))}
@@ -53,7 +53,7 @@ export default async function Home() {
         <div className={styles.taskWrapper}>
           <div className={styles.task}>
             {/* @ts-expect-error */}
-            <TaskCard />
+            <TaskCard/>
           </div>
           <div>
             <br />

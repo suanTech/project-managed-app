@@ -1,7 +1,7 @@
 import { formatDate } from "@/lib/helper";
 import Card from "./UI/Card";
 import styles from "./ProjectCard.module.scss";
-import { Prisma, Project, TASK_STATUS } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
   include: { tasks: true },
 });

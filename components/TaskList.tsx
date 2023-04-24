@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./AllTask.module.scss";
 import { formatDate } from "@/lib/helper";
 import EditButton from "./EditButton";
-import { TaskTypeWithProject } from "@/lib/types/Task";
-import { Prisma, Task } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 const tasksWithProject = Prisma.validator<Prisma.TaskArgs>()({
   include: { project: {

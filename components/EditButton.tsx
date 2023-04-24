@@ -12,8 +12,6 @@ import {
 } from "@/lib/api";
 import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
-import { ProjectType } from "@/lib/types/Project";
-import { TaskType } from "@/lib/types/Task";
 import Button from "./UI/Button";
 import { Project, Task } from "@prisma/client";
 
