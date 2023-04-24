@@ -7,8 +7,8 @@
   border-spacing: 0;
   thead {
     position: sticky;
-    top: 0;
     z-index: 1;
+    top: 0;
   }
   thead th {
     padding: 0.5rem;
@@ -25,35 +25,31 @@
 }
 .item {
   align-items: center;
-  transition: background-color .25s ease-out;
+  transition: background-color 0.25s ease-out;
   &:hover {
     background-color: rgba($clr-bg, 0.67);
   }
   td {
     cursor: pointer;
     padding: 0.5rem;
-    &.taskName {
-      position: relative;
-      &::before {
-        content: "\25BE";
-        padding-right: 10px;
-        color: $clr-muted;
-      }
+    &.taskName::before {
+      content: "\25BE";
+      padding-right: 10px;
+      color: $clr-muted;
     }
   }
 }
-.inputWrapper input, .dropdown {
-  margin-top: .5rem;
-  
+.inputWrapper input,
+.dropdown {
+  margin-top: 0.5rem;
 }
 
 .taskDescription {
   text-align: center;
+  height: 0;
   visibility: hidden;
-  position: relative;
-  opacity: 0;
-  &,
   div:first-child {
+    opacity: 0;
     transition: all 0.4s ease-in-out;
     overflow: hidden;
     transform: translateY(-20px);
@@ -71,7 +67,7 @@
   }
   &.show {
     visibility: visible;
-    &,
+    height: 100%;
     div:first-child {
       opacity: 1;
       transform: translateY(0px);
@@ -103,5 +99,5 @@
 }
 .modal {
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
