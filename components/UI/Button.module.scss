@@ -36,14 +36,15 @@
   @include font-size($bodyS-font-sizes);
 }
 .icon {
-  @extend .btn;
+  // @extend .btn;
   background: transparent;
   border: none;
   &:hover {
     box-shadow: none;
   }
   &-warning {
-    @extend .btn;
+    // @extend .btn;
+    @extend .icon;
     color: $clr-warning;
   }
 }
