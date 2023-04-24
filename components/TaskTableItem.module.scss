@@ -98,6 +98,6 @@
   }
 }
 .modal {
-  position: relative !important;
-  z-index: 2 !important;
+  position: absolute;
+  z-index: 2;
 }
