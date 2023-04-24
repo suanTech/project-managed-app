@@ -79,7 +79,6 @@ export default function AllTask({ tasks }: { tasks: TaskTypeWithProject[] }) {
           }
         })}
       </div>
-      {/* for screen size bigger than 992px */}
       <div className={styles.hiddenWrapper}>
         {data.map((item) => (
           <div className={styles.col} key={item.id}>

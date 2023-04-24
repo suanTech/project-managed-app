@@ -14,7 +14,7 @@ export const TaskList = ({ tasks }: { tasks: TaskTypeWithProject[] }) => {
             <EditButton data={task} type="task" />
           </div>
           <p>{task.description}</p>
-          <p>Due: {task.due && formatDate(task.due, "short")}</p>
+          <p>Due: {task.due ? formatDate(task.due, "short") : null}</p>
           <p>Project: {task.project.name}</p>
         </div>
       ))}

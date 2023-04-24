@@ -51,10 +51,10 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
         <div>
           <h1>{content.header}</h1>
           <p>{content.subheader}</p>
-          {error.length > 0 && <p className="small warning">{error}</p>}
+          {error.length > 0 ? <p className="small warning">{error}</p> : null}
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
-          {mode === "register" && (
+          {mode === "register" ? (
             <div className={styles.nameField}>
               <div className={styles.nameWrapper}>
                 <p className={styles.inputLabel}>First Name</p>
@@ -87,7 +87,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                 />
               </div>
             </div>
-          )}
+          ) : null}
           <div className={styles.fieldWrapper}>
             <p className={styles.inputLabel}>Email</p>
             <input
