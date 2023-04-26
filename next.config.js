@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
     serverComponentsExternalPackages: ["bcrypt"],
     swcPlugins: [["next-superjson-plugin", {
-      exclude: /middleware\?.*/,
+      // exclude: /middleware\?.*/,
     }],],
   },
   swcMinify: true,
