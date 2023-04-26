@@ -3,12 +3,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ["bcrypt"],
-    swcPlugins: [["next-superjson-plugin", {}]],
+    swcPlugins: [["next-superjson-plugin", {
+      exclude: /middleware\?.*/,
+    }],],
   },
   swcMinify: true,
-  swcLoaderOptions: {
-    exclude: /middleware\?.*/,
-  }
 };
 
 module.exports = nextConfig;

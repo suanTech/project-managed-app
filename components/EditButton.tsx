@@ -52,8 +52,8 @@ export default function EditButton({
         } catch (err) {
           console.log(err);
         } finally {
-          router.replace("/home");
           delay(2000);
+          router.replace("/home");
           console.log(values);
         }
       } else {
