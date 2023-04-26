@@ -55,10 +55,10 @@ export default async function ProjectPage({ params }: { params: Params }) {
             <div className={styles.header}>
               <div className={styles.titleWrapper}>
                 <h1>{project.name}</h1>
-                <EditButton type="project" data={project} data-superjson />
+                <EditButton type="project" data={project}/>
               </div>
               <div className={styles.buttonWrapper}>
-                <AddButton type="task" id={project.id!} data-superjson/>
+                <AddButton type="task" id={project.id!}/>
               </div>
             </div>
             <div className={styles.projectDescription}>
@@ -69,7 +69,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </div>
           <div className={styles.taskList}>
             {tasks && tasks.length ? (
-              <TaskTable data={tasks} data-superjson/>
+              <TaskTable data={tasks}/>
             ) : (
               <div>No Tasks</div>
             )}

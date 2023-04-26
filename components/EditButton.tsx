@@ -43,28 +43,25 @@ export default function EditButton({
         console.log(err);
       } finally {
         router.refresh();
-        delay(2000);
+        await delay(2000);
       }
     } else if ((e.target as HTMLButtonElement).name === "delete") {
       if (type === "project") {
         try {
           await deleteProject(data.id!);
+          await delay(4000);
         } catch (err) {
-          console.log(err);
         } finally {
-          delay(2000);
           router.replace("/home");
-          console.log(values);
         }
       } else {
         try {
           await deleteTask(data.id!);
+          await delay(2000);
         } catch (err) {
           console.log(err);
         } finally {
           router.refresh();
-          delay(2000);
-          console.log(values);
         }
       }
     }
