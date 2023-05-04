@@ -43,7 +43,7 @@ export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {
       </div>
       <div className={styles.statusWrapper}>
         <Button
-          btnType="primary-black"
+          btnType="secondary"
           size="small"
           className={activeButton === 1 ? styles.active : ""}
           onClick={() => handleClick(1)}
@@ -52,7 +52,7 @@ export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {
         </Button>
         <Button
           size="small"
-          btnType="primary-black"
+          btnType="secondary"
           className={activeButton === 2 ? styles.active : ""}
           onClick={() => handleClick(2)}
         >
@@ -60,7 +60,7 @@ export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {
         </Button>
         <Button
           size="small"
-          btnType="primary-black"
+          btnType="secondary"
           className={activeButton === 3 ? styles.active : ""}
           onClick={() => handleClick(3)}
         >

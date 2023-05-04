@@ -17,10 +17,6 @@
     @extend .btn;
     @include primary-btn($clr-warning);
   }
-  &-black {
-    @extend .btn;
-    @include primary-btn($clr-body)
-  }
 }
 .secondary {
   @extend .btn;

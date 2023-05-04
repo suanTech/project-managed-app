@@ -116,7 +116,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
           </div>
           <div className={styles.linkWrapper}>
             <div>
-              <p className="bold">
+              <p className="bold small">
                 <Link href={content.linkUrl}>{content.linkText}</Link>
               </p>
             </div>
