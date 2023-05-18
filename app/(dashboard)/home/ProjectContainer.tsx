@@ -12,7 +12,8 @@ export default function ProjectContainer({
   const { isLoading } = useContext(LoadingContext);
   return (
     <>
-      {isLoading ? <Spinner /> : children}
+      {isLoading && <Spinner />}
+      {children}
     </>
   );
 }
