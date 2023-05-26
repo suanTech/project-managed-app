@@ -22,7 +22,7 @@ export default function DashboardRootLayout({
   return (
     <html lang="en" className="rainbow-mesh">
       <body className={fontFace.className}>
-        <GlassPane className="container">
+        <GlassPane className="app-container">
           <Sidebar />
           <main className="dashboard">
             <LoadingContextProvider>

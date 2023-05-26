@@ -29,7 +29,7 @@ const getData = async () => {
 export default async function StatusPage() {
   const tasks = await getData();
   return (
-    <div className={styles.container}>
+    <div className="page-container">
       <Card className={styles.innerContainer}>
           <AllTask tasks={tasks}/>
       </Card>

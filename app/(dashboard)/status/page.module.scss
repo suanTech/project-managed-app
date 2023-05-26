@@ -1,32 +1,9 @@
 @import '/styles/mixins';
 @import '/styles/variables';
 
-.container {
-  height: 105%;
-  width: 100%;
-  padding: 0 1rem;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
-  span {
-    position: absolute;
-    right: 1rem;
-    top: 2rem;
-    button:hover {
-      color: $clr-accent;
-    }
-  }
-  @media (min-width: 590px) {
-    max-height: 105%;
-  }
-}
 .innerContainer {
   @include flexy($dir: column, $algn: center);
   height: 95%;
-  max-height: 460px;
   overflow: hidden;
   position: relative;
-  @media (min-width: 590px) {
-    max-height: 105%;
-  }
 }

@@ -35,11 +35,6 @@ export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {
     <>
       <div className={styles.titleWrapper}>
         <h2>All Tasks</h2>
-        <span>
-          <Button btnType="icon" size="small">
-            <Icon name="Filter" size={20} />
-          </Button>
-        </span>
       </div>
       <div className={styles.statusWrapper}>
         <Button

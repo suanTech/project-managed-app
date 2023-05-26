@@ -19,7 +19,7 @@ export default function AuthRootLayout({
   return (
     <html lang="en" className="candy-mesh">
       <body className={font.className}>
-        <main className="container">{children}</main>
+        <main className="app-container">{children}</main>
       </body>
     </html>
   );

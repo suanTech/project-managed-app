@@ -18,12 +18,12 @@ A full stack project management app built with Next.js, Typescript and Sass.
 * Built with Next.js 13's new feature "app" directory
 * Auth
   * User can sign in/register using their email address and password
-    * Password gets hashed/compared using bcrypt library
-    * Use JWT to authorise user
-    * Use edge runtime to save and access cookies with middleware
+    * Hash and compare passwords using bcrypt
+    * Use JWT to user authorization
+    * Utilize middleware in the edge runtime to save and access cookies for session management
 * Dashboard 
   * User can check their projects
-  * User is directed to project's detail page when clicking the project card.
+  * User is directed to project's detail page when clicking the project card
     * User can create new task
     * User can click each task to see details and edit/delete task
     * User can delete the project
