@@ -65,9 +65,6 @@
   button {
     margin-top: 1rem;
   }
-  input {
-    width: 100%;
-  }
   .dueDate {
     @include flexy($dir: column, $just: center, $algn: center);
     width: 100%;

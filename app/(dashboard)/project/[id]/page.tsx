@@ -45,7 +45,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
   if (project) {
     return (
       <div className="page-container">
-        <Card className={styles.innerContainer}>
+        <Card type="primary" className={styles.innerContainer}>
           <div>
             <div className={styles.navButton}>
               <Link href="/home">

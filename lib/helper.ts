@@ -7,11 +7,7 @@ export const delay = async (time: number) => {
 export const formatDate = (date: Date | string, version: "long" | "short"): string => {
   let formattedDate = '';
   if (version === "short") {
-    formattedDate = new Date(date).toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "short",
-      day: "numeric",
-    });
+    formattedDate = new Date(date).toLocaleDateString("en-GB");
   }
   if (version === "long") {
     formattedDate = new Date(date).toLocaleDateString("en-US", {

@@ -22,7 +22,7 @@ export default function ProjectCard({
       100
   ) || 0;
   return (
-    <Card className="project">
+    <Card type="primary" role="project">
       <div>
         <p className="small muted">{formatDate(project.createdAt, "long")}</p>
       </div>

@@ -27,7 +27,7 @@ const getData = async () => {
 export default async function TaskCard() {
   const data = await getData();
   return (
-    <Card className="task">
+    <Card type="primary" role="task">
       <div className={styles.titleWrapper}>
         <div>
           <h2>Due Tasks</h2>

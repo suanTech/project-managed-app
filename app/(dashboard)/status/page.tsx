@@ -30,7 +30,7 @@ export default async function StatusPage() {
   const tasks = await getData();
   return (
     <div className="page-container">
-      <Card className={styles.innerContainer}>
+      <Card type="primary" className={styles.innerContainer}>
           <AllTask tasks={tasks}/>
       </Card>
     </div>

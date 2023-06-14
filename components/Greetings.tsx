@@ -14,7 +14,7 @@ const getUser = async () => {
 const Greetings = async () => {
   const user = await getUser();
   return (
-    <Card className="greetings">
+    <Card type="primary" role="greetings">
       <div className="greetings-text">
         <div>
           <h1>Hello, {user?.firstName}!</h1>

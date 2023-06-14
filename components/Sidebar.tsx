@@ -14,9 +14,9 @@ const links = [
     path: "/status",
   },
   {
-    label: "Profile",
-    icon: "User",
-    path: "/profile",
+    label: "Activities",
+    icon: "Clock",
+    path: "/activities",
   },
   {
     label: "Settings",
@@ -27,7 +27,7 @@ const links = [
 
 export default function Sidebar() {
   return (
-    <Card className="sidebar">
+    <Card type="primary" role="sidebar">
       {links.map((link) => (
         <SidebarLink link={link} key={link.label} />
       ))}
