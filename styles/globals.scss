@@ -71,7 +71,6 @@ body {
   width: 100%;
   height: 100%;
   min-height: 500px;
-  max-height: 620px;
   padding: 1rem;
   margin: 0 auto;
   @include flexy($algn: center, $just: center, $dir: column);
