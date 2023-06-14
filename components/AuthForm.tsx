@@ -7,6 +7,7 @@ import { useState } from "react";
 import styles from "./AuthForm.module.scss";
 import Link from "next/link";
 import Button from "./UI/Button";
+import Spinner from "./UI/Spinner";
 
 const registerContent = {
   linkUrl: "/signin",
@@ -27,10 +28,12 @@ const initialState = { email: "", password: "", firstName: "", lastName: "" };
 export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
   const [formState, setFormState] = useState({ ...initialState });
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      setIsSubmitting(true);
       if (mode === "register") {
         await register(formState);
         router.replace("/signin");
@@ -41,6 +44,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
     } catch (err) {
       setError(`Could not ${mode}, please check the detail and try again`);
     } finally {
+      setIsSubmitting(false);
       setFormState({ ...initialState });
     }
   };
@@ -120,11 +124,15 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
                 <Link href={content.linkUrl}>{content.linkText}</Link>
               </p>
             </div>
-            <div>
-              <Button type="submit" btnType="secondary" size="small">
-                {content.buttonText}
-              </Button>
-            </div>
+            {isSubmitting ? (
+              <Spinner className="small" />
+            ) : (
+              <div>
+                <Button type="submit" btnType="secondary" size="small">
+                  {content.buttonText}
+                </Button>
+              </div>
+            )}
           </div>
         </form>
       </div>
