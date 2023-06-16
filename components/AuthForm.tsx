@@ -50,7 +50,7 @@ export default function AuthForm({ mode }: { mode: "register" | "signin" }) {
   };
   const content = mode === "register" ? registerContent : signinContent;
   return (
-    <Card type="main">
+    <Card type="primary">
       <div className={styles.formWrapper}>
         <div>
           <h1>{content.header}</h1>
