@@ -23,12 +23,12 @@ export default async function ActivityPage() {
         <h2>Upcoming Deadline</h2>
         <div className={styles.contentWrapper}>
           <div className={styles.projectGrid}>
-            {updatedTasks.map((task, i) => (
+            {/* {updatedTasks.map((task, i) => (
               <Card key={i} type="secondary" className={styles.gridItem}>
                 {" "}
                 UpdatedTask {task.name}
               </Card>
-            ))}
+            ))} */}
           </div>
           {/* <h2>Recent activities</h2>
             {updatedTasks.map((task, i) => <p key={i}> UpdatedTask {task.name}</p>)}

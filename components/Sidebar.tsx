@@ -14,9 +14,9 @@ const links = [
     path: "/status",
   },
   {
-    label: "Activities",
+    label: "Timeline",
     icon: "Clock",
-    path: "/activities",
+    path: "/timeline",
   },
   {
     label: "Settings",
