@@ -11,8 +11,9 @@ export const metadata = {
     icon: {url: "/icon.png", type: "image/png" }
   }
 };
-const fontFace = Overpass({
+const overpass = Overpass({
   subsets: ["latin"],
+  display: "swap"
 });
 export default function DashboardRootLayout({
   children,
@@ -21,7 +22,7 @@ export default function DashboardRootLayout({
 }) {
   return (
     <html lang="en" className="rainbow-mesh">
-      <body className={fontFace.className}>
+      <body className={overpass.className}>
         <GlassPane className="app-container">
           <Sidebar />
           <main className="dashboard">

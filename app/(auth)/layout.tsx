@@ -3,6 +3,7 @@ import { Overpass } from "next/font/google";
 
 const font = Overpass({
   subsets: ["latin"],
+  display: "swap"
 });
 
 export const metadata = {
