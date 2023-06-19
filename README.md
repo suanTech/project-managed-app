@@ -32,6 +32,28 @@ A full stack project management app built with Next.js, Typescript and Sass.
 * Use Sass mixins and variables for reusable styles
 * Completely responsive 🙌(Mobile first approach)
 
+## 🔍 Why I chose what I chose ?
+1. Next.js
+  * Allows building and deploying full-stack apps without separate server-side code.
+2. TypeScript
+  * Enables writing more precise code with enhanced type checking.
+  * Provides better error handling and auto completion, which benefits code quality and developer productivity.
+3. SCSS(Sass)
+  * Provides advanced CSS features like mixins and functions for easy style control and manipulation.
+  * Offers a powerful CSS writing experience.
+4. Prisma
+  * Simplifies database setup with its existing schema.
+  * Has easy integration and management of database.
+5. JWT with edge runtime's cookies
+  * Allows more specific control over session management.
+  * Uses industry-standard authentication mechanism which is compatible with many frameworks.
+  * Learning opportunity - I wanted to gain a deeper understanding of the underlying authentication mechanisms and security concepts.
+  * Offers full controll over token generation, validation, and expiration.
+6. Middleware
+  * Enables intercepting and processing requests in a centralized manner.
+  * Retrieve, validates and verifies JWT
+
+  
 ## 📀 Database Schema
 ![schema](./public/schema-diagram.png)
 
