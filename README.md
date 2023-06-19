@@ -72,7 +72,7 @@ A full stack project management app built with Next.js, Typescript and Sass.
 
 ##  🌪️ Troubleshooting
 
-####  Error: Warning when accessing Date object within client components
+###  Error: Warning when accessing Date object within client components
 
 **Error Message**
 
@@ -134,7 +134,7 @@ deletedAt: string | null;
 };
 ```
 
-####  Error: Vercel deploy fail - prisma generate error
+###  Error: Vercel deploy fail - prisma generate error
 
 **Error Message**
 
