@@ -53,7 +53,7 @@ A full stack project management app built with Next.js, Typescript and Sass.
   * Enables intercepting and processing requests in a centralized manner.
   * Retrieve, validates and verifies JWT
 
-  
+
 ## 📀 Database Schema
 ![schema](./public/schema-diagram.png)
 
@@ -63,11 +63,74 @@ A full stack project management app built with Next.js, Typescript and Sass.
 ## 🛠️ Tech Stack
 ![techStack](./public/techstack.png)
 
-## Dependencies
+## ⏱️ Dependencies
 * Prisma
 * Bcrypt
 * React-feather
 * Jose
+
+## 🌪️ Troubleshooting
+#### Error: Warning when accessing Date object within client components
+**Error Message**
+`Warning: Only plain objects can be passed to Client Components from Server Components. Date objects are not supported.
+{id: ..., createdAt: Date, updatedAt: ..., ownerId: ..., projectId: ..., status: ..., name: ..., description: ..., due: ..., deleted: ...}`
+**Problem**
+When passing the data from server component to client component through props, the data is serialized for use in browser.
+**Solution**
+To deserialize, I changed the getData function in server component.
+<code>const getData = async(id: string) => {
+  const user = await getUserFromCookie(cookies());
+  const project = await db.project.findFirst({
+  where: {
+    id,
+    ownerId: user?.id
+  },
+  include: {
+    tasks: true,
+  }
+  })
+  return {
+    ...project,
+    tasks: project?.tasks.map(task => {
+    return {
+      ...task,
+      **due: task.due?.toJSON(),**
+      **createdAt: task.createdAt.toJSON(),**
+      **updatedAt: task.updatedAt.toJSON()**
+    }
+  })}
+}</code>
+And changed the type accordingly.
+<code>export type ProjectProps = Omit<
+  Project,
+  "due" | "createdAt" | "updatedAt" | "tasks"
+> & {
+  due: string | undefined;
+  createdAt: string | undefined;
+  updatedAt: string | undefined;
+  deletedAt: string | null;
+  tasks: {
+    due: string | undefined;
+    createdAt: string | undefined;
+    updatedAt: string | undefined;
+    deletedAt: string | null;
+  };
+};</code>
+#### Error: Vercel deploy fail - prisma generate error
+**Error Message**
+<code>PrismaClientInitializationError: Prisma has detected that this project was built on Vercel, which caches dependencies. This leads to an outdated Prisma Client because Prisma's auto-generation isn't triggered. To fix this, make sure to run the "prisma generate" command during the build process.</code>
+**Problem**
+Vercel cashes dependencies, so I have to tell vercel to generate new Prisma Client during the build process.
+**Solution**
+Add to package.json
+<code>{
+  ...
+  "scripts" {
+    "postinstall": "prisma generate"
+  }
+  ...
+}</code>
+
 ## 🔜 Future Challenge
 - [ ] Add User Profile page & Settings page
 - [ ] Style Status page's task cards
