@@ -69,73 +69,94 @@ A full stack project management app built with Next.js, Typescript and Sass.
 * React-feather
 * Jose
 
-## 🌪️ Troubleshooting
-#### Error: Warning when accessing Date object within client components
+
+##  🌪️ Troubleshooting
+
+####  Error: Warning when accessing Date object within client components
+
 **Error Message**
-`Warning: Only plain objects can be passed to Client Components from Server Components. Date objects are not supported.
-{id: ..., createdAt: Date, updatedAt: ..., ownerId: ..., projectId: ..., status: ..., name: ..., description: ..., due: ..., deleted: ...}`
-**Problem**
-When passing the data from server component to client component through props, the data is serialized for use in browser.
-**Solution**
-To deserialize, I changed the getData function in server component.
+
 ```
+Warning: Only plain objects can be passed to Client Components from Server Components. Date objects are not supported.
+{id: ..., createdAt: Date, updatedAt: ..., ownerId: ..., projectId: ..., status: ..., name: ..., description: ..., due: ..., deleted: ...}
+```
+
+**Problem**
+
+When passing the data from server component to client component through props, the data is serialized for use in browser.
+
+**Solution**
+
+To deserialize, I changed the getData function in server component.
+
+```ts
 const getData = async(id: string) => {
-  const user = await getUserFromCookie(cookies());
-  const project = await db.project.findFirst({
-  where: {
-    id,
-    ownerId: user?.id
-  },
-  include: {
-    tasks: true,
-  }
-  })
-  return {
-    ...project,
-    tasks: project?.tasks.map(task => {
-    return {
-      ...task,
-      **due: task.due?.toJSON(),**
-      **createdAt: task.createdAt.toJSON(),**
-      **updatedAt: task.updatedAt.toJSON()**
-    }
-  })}
+const user = await getUserFromCookie(cookies());
+const project = await db.project.findFirst({
+	where: {
+		id,
+		ownerId: user?.id
+	},
+	include: {
+		tasks: true,
+		}
+	})
+	return {
+	...project,
+	tasks: project?.tasks.map(task => {
+		return {
+			...task,
+			due: task.due?.toJSON(),
+			createdAt: task.createdAt.toJSON(),
+			updatedAt: task.updatedAt.toJSON()**
+		}
+	})}
 }
 ```
+
 And changed the type accordingly.
-```
+
+```ts
 export type ProjectProps = Omit<
-  Project,
-  "due" | "createdAt" | "updatedAt" | "tasks"
+Project,
+"due" | "createdAt" | "updatedAt" | "tasks"
 > & {
-  due: string | undefined;
-  createdAt: string | undefined;
-  updatedAt: string | undefined;
-  deletedAt: string | null;
-  tasks: {
-    due: string | undefined;
-    createdAt: string | undefined;
-    updatedAt: string | undefined;
-    deletedAt: string | null;
-  };
+due: string | undefined;
+createdAt: string | undefined;
+updatedAt: string | undefined;
+deletedAt: string | null;
+	tasks: {
+	due: string | undefined;
+	createdAt: string | undefined;
+	updatedAt: string | undefined;
+	deletedAt: string | null;
+	};
 };
 ```
-#### Error: Vercel deploy fail - prisma generate error
+
+####  Error: Vercel deploy fail - prisma generate error
+
 **Error Message**
+
 ```
 PrismaClientInitializationError: Prisma has detected that this project was built on Vercel, which caches dependencies. This leads to an outdated Prisma Client because Prisma's auto-generation isn't triggered. To fix this, make sure to run the "prisma generate" command during the build process.
 ```
+
 **Problem**
+
 Vercel cashes dependencies, so I have to tell vercel to generate new Prisma Client during the build process.
+
 **Solution**
+
 Add to package.json
-```
+
+```json
 {
-  ...
-  "scripts" {
-    "postinstall": "prisma generate"
-  }
-  ...
+...
+	"scripts" {
+		"postinstall": "prisma generate"
+	}
+...
 }
 ```
 
