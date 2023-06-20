@@ -19,8 +19,7 @@ A full stack project management app built with Next.js, Typescript and Sass.
 * Auth
   * User can sign in/register using their email address and password
     * Hash and compare passwords using bcrypt
-    * Use JWT to user authorization
-    * Utilize middleware in the edge runtime to save and access cookies for session management
+    * Use JWT to save and access cookies for session management by utilising middleware in the edge runtime
 * Dashboard 
   * User can check their projects
   * User is directed to project's detail page when clicking the project card
