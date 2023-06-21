@@ -6,8 +6,8 @@ import { getUserFromCookie } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { cookies } from "next/headers";
 import Link from "next/link";
+import LoadingStateContainer from "./LoadingStateContainer";
 import styles from "./page.module.scss";
-import ProjectContainer from "./ProjectContainer";
 
 const getData = async () => {
   const user = await getUserFromCookie(cookies());
@@ -38,9 +38,10 @@ export default async function Home() {
         </div>
         <div className={styles.projectWrapper}>
           <div className={styles.newProject}>
+          <LoadingStateContainer>
             <AddButton type="project" />
+          </LoadingStateContainer>
           </div>
-          <ProjectContainer>
             {projects.map((project) => (
               <div className={styles.project} key={project.id}>
                 <Link href={`/project/${project.id}`}>
@@ -48,7 +49,6 @@ export default async function Home() {
                 </Link>
               </div>
             ))}
-          </ProjectContainer>
         </div>
         <div className={styles.taskWrapper}>
           <div className={styles.task}>

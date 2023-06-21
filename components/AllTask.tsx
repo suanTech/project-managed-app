@@ -5,6 +5,7 @@ import styles from "./AllTask.module.scss";
 import { useState } from "react";
 import { TaskList, TasksWithProject } from "./TaskList";
 import Button from "./UI/Button";
+import LoadingStateContainer from "@/app/(dashboard)/home/LoadingStateContainer";
 
 export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {
   const [activeButton, setActiveButton] = useState(1);
@@ -63,22 +64,26 @@ export default function AllTask({ tasks }: { tasks: TasksWithProject[] }) {
         </Button>
       </div>
       <div className={styles.contentWrapper}>
-        {data.map((item) => {
-          if (item.id === activeListId) {
-            return (
-              <div className={styles.col} id={item.id} key={item.id}>
-                <TaskList tasks={item.tasks} />
-              </div>
-            );
-          }
-        })}
+        <LoadingStateContainer>
+          {data.map((item) => {
+            if (item.id === activeListId) {
+              return (
+                <div className={styles.col} id={item.id} key={item.id}>
+                  <TaskList tasks={item.tasks} />
+                </div>
+              );
+            }
+          })}
+        </LoadingStateContainer>
       </div>
       <div className={styles.hiddenWrapper}>
-        {data.map((item) => (
-          <div className={styles.col} key={item.id}>
-            <TaskList tasks={item.tasks} />
-          </div>
-        ))}
+        <LoadingStateContainer>
+          {data.map((item) => (
+            <div className={styles.col} key={item.id}>
+              <TaskList tasks={item.tasks} />
+            </div>
+          ))}
+        </LoadingStateContainer>
       </div>
     </>
   );

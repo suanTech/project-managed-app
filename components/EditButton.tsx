@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Icon } from "./UI/Icon";
 import Modal from "./UI/Modal";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,7 @@ import { delay } from "@/lib/helper";
 import styles from "./UI/Modal.module.scss";
 import Button from "./UI/Button";
 import { Project, Task } from "@prisma/client";
+import { LoadingContext } from "@/app/Context";
 
 export default function EditButton({
   data,
@@ -24,6 +25,7 @@ export default function EditButton({
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const {setIsLoading} = useContext(LoadingContext);
   const [values, setValues] = useState({
     name: data.name!,
     description: data.description || "",
@@ -31,6 +33,7 @@ export default function EditButton({
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     setModalOpen(false);
     if ((e.target as HTMLButtonElement).name === "update") {
       try {
@@ -43,6 +46,7 @@ export default function EditButton({
         console.log(err);
       } finally {
         router.refresh();
+        setIsLoading(false);
         await delay(2000);
       }
     } else if ((e.target as HTMLButtonElement).name === "delete") {
@@ -53,6 +57,7 @@ export default function EditButton({
         } catch (err) {
         } finally {
           router.replace("/home");
+          setIsLoading(false);
         }
       } else {
         try {
@@ -62,6 +67,7 @@ export default function EditButton({
           console.log(err);
         } finally {
           router.refresh();
+          setIsLoading(false);
         }
       }
     }

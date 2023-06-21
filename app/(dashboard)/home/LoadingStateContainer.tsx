@@ -4,7 +4,7 @@ import { LoadingContext } from "@/app/Context";
 import Spinner from "@/components/UI/Spinner";
 import React, { useContext } from "react";
 
-export default function ProjectContainer({
+export default function LoadingStateContainer({
   children
 }: {
   children: React.ReactNode
@@ -12,8 +12,7 @@ export default function ProjectContainer({
   const { isLoading } = useContext(LoadingContext);
   return (
     <>
-      {isLoading && <Spinner />}
-      {children}
+      {isLoading ? <Spinner /> : children}
     </>
   );
 }

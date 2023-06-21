@@ -6,7 +6,7 @@ const projectWithTasks = Prisma.validator<Prisma.ProjectArgs>()({
   include: { tasks: true },
 });
 
-type ProjectWithTasks = Prisma.ProjectGetPayload<typeof projectWithTasks>;
+export type ProjectWithTasks = Prisma.ProjectGetPayload<typeof projectWithTasks>;
 
 export default function ProjectCard({
   project,
